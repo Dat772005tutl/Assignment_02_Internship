@@ -1,52 +1,45 @@
-// assets/cart.js
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Tự động tính lại tổng tiền giỏ hàng
   function updateCartTotals() {
     let subtotal = 0;
     const items = document.querySelectorAll(".cart-item");
-
     items.forEach((item) => {
       const price = parseFloat(item.getAttribute("data-price"));
-      const qty = parseInt(item.querySelector(".cart-qty-val").textContent);
-      subtotal += price * qty;
+      const qtyEl = item.querySelector(".cart-qty-val");
+      if (qtyEl) {
+        const qty = parseInt(qtyEl.textContent);
+        subtotal += price * qty;
+      }
     });
 
-    const discountRate = 0.2; // 20%
-    const discount = Math.round(subtotal * discountRate);
+    const discount = Math.round(subtotal * 0.2);
     const deliveryFee = subtotal > 0 ? 15 : 0;
     const total = subtotal - discount + deliveryFee;
 
-    // Cập nhật DOM
-    const subtotalEl = document.getElementById("summary-subtotal");
-    const discountEl = document.getElementById("summary-discount");
-    const deliveryEl = document.getElementById("summary-delivery");
-    const totalEl = document.getElementById("summary-total");
+    const subEl = document.getElementById("summary-subtotal");
+    const disEl = document.getElementById("summary-discount");
+    const delEl = document.getElementById("summary-delivery");
+    const totEl = document.getElementById("summary-total");
 
-    if (subtotalEl) subtotalEl.textContent = `$${subtotal}`;
-    if (discountEl) discountEl.textContent = `-$${discount}`;
-    if (deliveryEl) deliveryEl.textContent = `$${deliveryFee}`;
-    if (totalEl) totalEl.textContent = `$${total}`;
+    if (subEl) subEl.textContent = `$${subtotal}`;
+    if (disEl) disEl.textContent = `-$${discount}`;
+    if (delEl) delEl.textContent = `$${deliveryFee}`;
+    if (totEl) totEl.textContent = `$${total}`;
   }
 
-  // 2. Lắng nghe tăng, giảm số lượng & xóa sản phẩm
   document.querySelectorAll(".cart-item").forEach((item) => {
-    const minusBtn = item.querySelector(".cart-qty-minus");
-    const plusBtn = item.querySelector(".cart-qty-plus");
-    const qtyVal = item.querySelector(".cart-qty-val");
+    const minus = item.querySelector(".cart-qty-minus");
+    const plus = item.querySelector(".cart-qty-plus");
+    const val = item.querySelector(".cart-qty-val");
     const removeBtn = item.querySelector(".cart-item-remove");
 
-    if (minusBtn && plusBtn && qtyVal) {
-      minusBtn.addEventListener("click", () => {
-        let currentQty = parseInt(qtyVal.textContent);
-        if (currentQty > 1) {
-          qtyVal.textContent = currentQty - 1;
-          updateCartTotals();
-        }
+    if (minus && plus && val) {
+      minus.addEventListener("click", () => {
+        let c = parseInt(val.textContent);
+        if (c > 1) { val.textContent = c - 1; updateCartTotals(); }
       });
-
-      plusBtn.addEventListener("click", () => {
-        let currentQty = parseInt(qtyVal.textContent);
-        qtyVal.textContent = currentQty + 1;
+      plus.addEventListener("click", () => {
+        let c = parseInt(val.textContent);
+        val.textContent = c + 1;
         updateCartTotals();
       });
     }
@@ -59,6 +52,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Khởi chạy tính toán lúc đầu
   updateCartTotals();
 });
