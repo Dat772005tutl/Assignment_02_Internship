@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SHOP.CO | Category - Casual</title>
+  <!-- Ra ngoài 1 cấp để gọi style.css -->
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="top-banner">
+    Sign up and get 20% off to your first order. <a href="#">Sign Up Now</a>
+    <span class="close-btn">&times;</span>
+  </div>
+
+  <!-- Nav -->
+  <header class="container">
+    <nav class="navbar">
+      <div class="mobile-menu-btn">&#9776;</div>
+      <a href="../index.html" class="nav-logo">SHOP.CO</a>
+      <ul class="nav-links">
+        <li><a href="category.html">Shop</a></li>
+        <li><a href="category.html">On Sale</a></li>
+        <li><a href="category.html">New Arrivals</a></li>
+      </ul>
+      <div class="nav-icons">
+        <a href="#">&#128722;</a>
+        <a href="#">&#128100;</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a> &gt; <span>Casual</span>
+    </div>
+
+    <div class="category-layout">
+      <!-- Bộ lọc bên trái -->
+      <aside class="filter-sidebar">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+          <h3>Filters</h3>
+          <span>&#9881;</span>
+        </div>
+        
+        <div class="filter-group">
+          <p style="margin:8px 0; color:var(--text-muted); cursor:pointer;">T-shirts &gt;</p>
+          <p style="margin:8px 0; color:var(--text-muted); cursor:pointer;">Shorts &gt;</p>
+          <p style="margin:8px 0; color:var(--text-muted); cursor:pointer;">Shirts &gt;</p>
+          <p style="margin:8px 0; color:var(--text-muted); cursor:pointer;">Hoodie &gt;</p>
+          <p style="margin:8px 0; color:var(--text-muted); cursor:pointer;">Jeans &gt;</p>
+        </div>
+
+        <div class="filter-group">
+          <h4>Price <span>&#9652;</span></h4>
+          <input type="range" min="50" max="200" style="width:100%" />
+          <div style="display:flex; justify-content:space-between; font-weight:700; font-size:14px; margin-top:8px;">
+            <span>$50</span><span>$200</span>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h4>Colors <span>&#9652;</span></h4>
+          <div class="color-options">
+            <span class="color-dot" style="background:#00C12B"></span>
+            <span class="color-dot" style="background:#F50606"></span>
+            <span class="color-dot" style="background:#F5DD06"></span>
+            <span class="color-dot" style="background:#F57906"></span>
+            <span class="color-dot" style="background:#06CAF5"></span>
+            <span class="color-dot" style="background:#063AF5"></span>
+            <span class="color-dot" style="background:#7D06F5"></span>
+            <span class="color-dot" style="background:#F506A4"></span>
+            <span class="color-dot" style="background:#fff"></span>
+            <span class="color-dot" style="background:#000"></span>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h4>Size <span>&#9652;</span></h4>
+          <div class="size-chips">
+            <span class="chip">Small</span>
+            <span class="chip">Medium</span>
+            <span class="chip active">Large</span>
+            <span class="chip">X-Large</span>
+          </div>
+        </div>
+
+        <button class="btn-primary" style="width:100%; margin-top:20px;">Apply Filter</button>
+      </aside>
+
+      <!-- Danh sách sản phẩm bên phải -->
+      <section>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+          <h2>Casual</h2>
+          <span style="color:var(--text-muted); font-size:14px;">Showing 1-6 of 100 Products</span>
+        </div>
+
+        <div class="product-grid" style="grid-template-columns: repeat(3, 1fr);">
+          <a href="product-detail.html" class="product-card">
+            <div class="product-img"><img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=300" alt="Gradient Tee" /></div>
+            <p class="product-name">Gradient Graphic T-shirt</p>
+            <div class="product-rating">&#9733;&#9733;&#9733;&#9733;&#9733; <span class="rating-num">4.5/5</span></div>
+            <div class="product-price">$145</div>
+          </a>
+          <a href="product-detail.html" class="product-card">
+            <div class="product-img"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=300" alt="Polo" /></div>
+            <p class="product-name">Polo with Tipping Details</p>
+            <div class="product-rating">&#9733;&#9733;&#9733;&#9733;&#9733; <span class="rating-num">4.5/5</span></div>
+            <div class="product-price">$180</div>
+          </a>
+          <a href="product-detail.html" class="product-card">
+            <div class="product-img"><img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=300" alt="Striped Tee" /></div>
+            <p class="product-name">Black Striped T-shirt</p>
+            <div class="product-rating">&#9733;&#9733;&#9733;&#9733;&#9733; <span class="rating-num">5.0/5</span></div>
+            <div class="product-price">$120 <span class="price-old">$160</span></div>
+          </a>
+          <a href="product-detail.html" class="product-card">
+            <div class="product-img"><img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=300" alt="Skinny Jeans" /></div>
+            <p class="product-name">Skinny Fit Jeans</p>
+            <div class="product-rating">&#9733;&#9733;&#9733;&#9733;&#9734; <span class="rating-num">3.5/5</span></div>
+            <div class="product-price">$240 <span class="price-old">$260</span></div>
+          </a>
+          <a href="product-detail.html" class="product-card">
+            <div class="product-img"><img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300" alt="Checkered Shirt" /></div>
+            <p class="product-name">Checkered Shirt</p>
+            <div class="product-rating">&#9733;&#9733;&#9733;&#9733;&#9733; <span class="rating-num">4.5/5</span></div>
+            <div class="product-price">$180</div>
+          </a>
+          <a href="product-detail.html" class="product-card">
+            <div class="product-img"><img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=300" alt="Sleeve Striped" /></div>
+            <p class="product-name">Sleeve Striped T-shirt</p>
+            <div class="product-rating">&#9733;&#9733;&#9733;&#9733;&#9733; <span class="rating-num">4.5/5</span></div>
+            <div class="product-price">$130</div>
+          </a>
+        </div>
+
+        <div class="pagination">
+          <button class="btn-outline">&larr; Previous</button>
+          <div style="display:flex; gap:10px; font-weight:600;">
+            <span style="background:var(--gray-bg); padding:6px 12px; border-radius:8px;">1</span>
+            <span style="padding:6px 12px;">2</span>
+            <span style="padding:6px 12px;">3</span>
+          </div>
+          <button class="btn-outline">Next &rarr;</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-bottom" style="border:none;">
+      <p>Shop.co &copy; 2000-2026, All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <script src="../assets/global.js"></script>
+</body>
+</html>

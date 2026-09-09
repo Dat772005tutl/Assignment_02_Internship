@@ -1,0 +1,717 @@
+@import url('https://fonts.googleapis.com/css2?family=Satoshi:wght@400;500;700;800;900&display=swap');
+
+/* --- RESET & BIẾN MÀU TOÀN DỰ ÁN --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+:root {
+  --primary: #000000;
+  --secondary: #F2F0F1;
+  --gray-bg: #F0F0F0;
+  --text-muted: rgba(0, 0, 0, 0.6);
+  --star-color: #FFC633;
+  --discount-bg: #FF33331A;
+  --discount-text: #FF3333;
+  --max-width: 1240px;
+}
+
+body {
+  color: var(--primary);
+  background-color: #fff;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Đường kẻ phân cách giữa New Arrivals và Top Selling */
+.section-divider {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 64px auto;
+  max-width: var(--max-width);
+}
+
+/* --- 1. TOP BANNER --- */
+.top-banner {
+  background: var(--primary);
+  color: #fff;
+  text-align: center;
+  font-size: 13px;
+  padding: 9px 20px;
+  position: relative;
+  font-weight: 400;
+}
+.top-banner a {
+  text-decoration: underline;
+  font-weight: 600;
+}
+.top-banner .close-btn {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+/* --- 2. NAVBAR --- */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+  gap: 36px;
+}
+.nav-logo {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+}
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 24px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.nav-links a {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.nav-search {
+  flex: 1;
+  background: var(--gray-bg);
+  border-radius: 60px;
+  display: flex;
+  align-items: center;
+  padding: 12px 18px;
+  gap: 12px;
+}
+.nav-search svg {
+  width: 18px;
+  height: 18px;
+  opacity: 0.4;
+}
+.nav-search input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  outline: none;
+  font-size: 14px;
+  color: #000;
+}
+.nav-search input::placeholder {
+  color: var(--text-muted);
+}
+.nav-icons {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.nav-icons svg {
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+.mobile-menu-btn {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* --- 3. HERO SECTION --- */
+.hero {
+  background: var(--secondary);
+  position: relative;
+  overflow: hidden;
+}
+.hero-content {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  align-items: center;
+  min-height: 580px;
+}
+.hero-left {
+  padding: 60px 0;
+  z-index: 2;
+}
+.hero-title {
+  font-size: 58px;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -1px;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+}
+.hero-subtitle {
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 520px;
+}
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  padding: 16px 54px;
+  border-radius: 60px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  transition: opacity 0.2s;
+}
+.btn-primary:hover {
+  opacity: 0.85;
+}
+
+/* Hero Stats & Kẻ vạch ngăn cách */
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-top: 48px;
+}
+.stat-item h3 {
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1;
+}
+.stat-item p {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-top: 6px;
+}
+.stat-divider {
+  width: 1px;
+  height: 52px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Hero Image & 2 Ngôi sao 4 cánh Figma */
+.hero-right {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-self: end;
+  height: 100%;
+}
+.hero-main-img {
+  width: 100%;
+  max-height: 600px;
+  object-fit: contain;
+  object-position: bottom;
+  z-index: 1;
+}
+.star-icon {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+}
+.star-big {
+  top: 50px;
+  right: 10px;
+  width: 90px;
+  height: 90px;
+}
+.star-small {
+  top: 42%;
+  left: 10px;
+  width: 48px;
+  height: 48px;
+}
+
+/* --- 4. BRANDS BANNER --- */
+.brands-banner {
+  background: var(--primary);
+  color: #fff;
+  padding: 42px 0;
+}
+.brands-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+.brand-versace { font-family: 'Times New Roman', serif; font-size: 32px; letter-spacing: 4px; font-weight: 700; }
+.brand-zara { font-family: 'Georgia', serif; font-size: 38px; letter-spacing: -3px; font-weight: 900; }
+.brand-gucci { font-family: 'Arial', sans-serif; font-size: 28px; letter-spacing: 6px; font-weight: 700; }
+.brand-prada { font-family: 'Impact', sans-serif; font-size: 32px; letter-spacing: 2px; font-weight: 900; }
+.brand-ck { font-family: 'Helvetica', sans-serif; font-size: 26px; letter-spacing: 2px; font-weight: 500; }
+
+/* --- 5. TIÊU ĐỀ SECTION & NÚT VIEW ALL --- */
+.section-title {
+  text-align: center;
+  font-size: 44px;
+  font-weight: 900;
+  margin: 64px 0 48px 0;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+.btn-outline {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 14px 54px;
+  border-radius: 60px;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  display: inline-block;
+  transition: all 0.2s;
+}
+.btn-outline:hover {
+  background: var(--primary);
+  color: #fff;
+}
+.view-all-box {
+  text-align: center;
+  margin: 36px 0 40px 0;
+}
+
+/* --- 6. LƯỚI SẢN PHẨM (NEW ARRIVALS & TOP SELLING) --- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.product-card {
+  display: flex;
+  flex-direction: column;
+}
+.product-img {
+  background: #F0EEED;
+  border-radius: 20px;
+  aspect-ratio: 1 / 1.05;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+.product-img img {
+  height: 85%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+.product-card:hover .product-img img {
+  transform: scale(1.05);
+}
+.product-name {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+.product-rating {
+  color: var(--star-color);
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.rating-num {
+  color: var(--text-muted);
+  margin-left: 6px;
+  font-size: 13px;
+}
+.product-price {
+  font-size: 20px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.price-old {
+  color: var(--text-muted);
+  text-decoration: line-through;
+  font-size: 18px;
+}
+.discount-badge {
+  background: var(--discount-bg);
+  color: var(--discount-text);
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+/* --- 7. BROWSE BY DRESS STYLE --- */
+.dress-style-box {
+  background: var(--gray-bg);
+  border-radius: 36px;
+  padding: 60px 48px;
+  margin: 60px auto;
+}
+.dress-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 20px;
+}
+.dress-grid.reverse {
+  grid-template-columns: 1.6fr 1fr;
+  margin-top: 20px;
+}
+.dress-card {
+  background: #fff;
+  height: 260px;
+  border-radius: 20px;
+  padding: 28px 36px;
+  position: relative;
+  overflow: hidden;
+  font-size: 28px;
+  font-weight: 800;
+  display: block;
+}
+.dress-card img {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 60%;
+  object-fit: cover;
+}
+
+/* --- 8. OUR HAPPY CUSTOMERS --- */
+.customer-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 60px 0 36px 0;
+}
+.customer-section-header h2 {
+  font-size: 44px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+.carousel-arrows {
+  display: flex;
+  gap: 12px;
+}
+.arrow-btn {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 4px;
+}
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.review-card {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  padding: 28px;
+}
+.review-card .stars {
+  color: var(--star-color);
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+.reviewer-name {
+  font-weight: 800;
+  font-size: 16px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.verified-icon {
+  background: #01AB31;
+  color: #fff;
+  font-size: 10px;
+  border-radius: 50%;
+  padding: 2px 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.review-text {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* --- 9. FLOATING NEWSLETTER BOX --- */
+.newsletter-wrapper {
+  position: relative;
+  z-index: 10;
+  margin-bottom: -80px; /* Nổi đè lên Footer */
+  margin-top: 60px;
+}
+.newsletter-box {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 20px;
+  padding: 38px 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+.newsletter-box h2 {
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 1.15;
+  text-transform: uppercase;
+  max-width: 520px;
+  letter-spacing: -0.5px;
+}
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 350px;
+}
+.newsletter-input-group {
+  background: #fff;
+  border-radius: 60px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.newsletter-input-group svg {
+  width: 18px;
+  height: 18px;
+  opacity: 0.4;
+}
+.newsletter-input-group input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+  color: #000;
+}
+.newsletter-btn {
+  background: #fff;
+  color: var(--primary);
+  border: none;
+  padding: 13px;
+  border-radius: 60px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.newsletter-btn:hover {
+  background: #f3f3f3;
+}
+
+/* --- 10. FOOTER --- */
+footer {
+  background: var(--gray-bg);
+  padding-top: 130px;
+  padding-bottom: 40px;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+.footer-about p {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 18px 0 24px 0;
+  max-width: 250px;
+}
+.social-icons {
+  display: flex;
+  gap: 12px;
+}
+.social-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.social-circle svg {
+  width: 15px;
+  height: 15px;
+  fill: #000;
+}
+.social-circle:hover {
+  background: #000;
+}
+.social-circle:hover svg {
+  fill: #fff;
+}
+.footer-col h4 {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.footer-col ul a:hover {
+  color: var(--primary);
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.payment-badges {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.payment-badge {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  padding: 4px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+}
+.payment-badge svg {
+  height: 18px;
+}
+
+/* =======================================================
+   RESPONSIVE MOBILE
+   ======================================================= */
+@media (max-width: 768px) {
+  .nav-links, .nav-search {
+    display: none;
+  }
+  .mobile-menu-btn {
+    display: block;
+  }
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: left;
+    min-height: auto;
+  }
+  .hero-title {
+    font-size: 36px;
+  }
+  .hero-stats {
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+  }
+  .stat-divider {
+    display: none;
+  }
+  .hero-right {
+    margin-top: 20px;
+  }
+  .star-big {
+    width: 60px;
+    height: 60px;
+    top: 20px;
+    right: 10px;
+  }
+  .star-small {
+    width: 36px;
+    height: 36px;
+    left: 10px;
+  }
+  .brands-wrap {
+    justify-content: center;
+    gap: 24px;
+  }
+  .section-title {
+    font-size: 32px;
+    margin: 40px 0 28px 0;
+  }
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px;
+  }
+  .dress-style-box {
+    padding: 30px 20px;
+    border-radius: 24px;
+  }
+  .dress-grid, .dress-grid.reverse {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+  .dress-card {
+    height: 180px;
+    padding: 20px;
+    font-size: 22px;
+  }
+  .customer-section-header h2 {
+    font-size: 30px;
+  }
+  .reviews-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .newsletter-wrapper {
+    margin-bottom: -110px;
+  }
+  .newsletter-box {
+    flex-direction: column;
+    padding: 30px 20px;
+    gap: 24px;
+  }
+  .newsletter-box h2 {
+    font-size: 26px;
+  }
+  .newsletter-form {
+    width: 100%;
+  }
+  footer {
+    padding-top: 140px;
+  }
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  .footer-about {
+    grid-column: span 2;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+}
