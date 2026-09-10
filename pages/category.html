@@ -139,30 +139,49 @@
 
   <app-footer></app-footer>
 
-  <script>
+<script>
+    // 1. Thêm cờ isNew: true cho các sản phẩm New Arrivals
     const PRODUCTS_DATA = [
-      { id: "tape-details-tee", name: "T-shirt with Tape Details", price: 120, oldPrice: null, rating: 4.5, category: "T-shirts", color: "black", size: ["Small", "Medium", "Large"], image: "../images/tape-details-1.jpg" },
-      { id: "skinny-fit-jeans", name: "Skinny Fit Jeans", price: 240, oldPrice: 260, rating: 3.5, category: "Jeans", color: "blue", size: ["Medium", "Large", "X-Large"], image: "../images/skinny-jeans-1.jpg" },
-      { id: "checkered-shirt", name: "Checkered Shirt", price: 180, oldPrice: null, rating: 4.5, category: "Shirts", color: "red", size: ["Small", "Medium", "Large"], image: "../images/checkered-shirt-1.jpg" },
-      { id: "sleeve-striped-tee", name: "Sleeve Striped T-shirt", price: 130, oldPrice: 160, rating: 4.5, category: "T-shirts", color: "orange", size: ["Small", "Medium"], image: "../images/sleeve-striped-1.jpg" },
+      { id: "tape-details-tee", name: "T-shirt with Tape Details", price: 120, oldPrice: null, rating: 4.5, category: "T-shirts", isNew: true, color: "black", size: ["Small", "Medium", "Large"], image: "../images/tape-details-1.jpg" },
+      { id: "skinny-fit-jeans", name: "Skinny Fit Jeans", price: 240, oldPrice: 260, rating: 3.5, category: "Jeans", isNew: true, color: "blue", size: ["Medium", "Large", "X-Large"], image: "../images/skinny-jeans-1.jpg" },
+      { id: "checkered-shirt", name: "Checkered Shirt", price: 180, oldPrice: null, rating: 4.5, category: "Shirts", isNew: true, color: "red", size: ["Small", "Medium", "Large"], image: "../images/checkered-shirt-1.jpg" },
+      { id: "sleeve-striped-tee", name: "Sleeve Striped T-shirt", price: 130, oldPrice: 160, rating: 4.5, category: "T-shirts", isNew: true, color: "orange", size: ["Small", "Medium"], image: "../images/sleeve-striped-1.jpg" },
 
-      { id: "vertical-striped-shirt", name: "Vertical Striped Shirt", price: 212, oldPrice: 232, rating: 5.0, category: "Shirts", color: "green", size: ["Medium", "Large"], image: "../images/vertical-striped-1.jpg" },
-      { id: "courage-graphic-tee", name: "Courage Graphic T-shirt", price: 145, oldPrice: null, rating: 4.0, category: "T-shirts", color: "orange", size: ["Small", "Medium", "Large"], image: "../images/courage-graphic-1.jpg" },
-      { id: "bermuda-shorts", name: "Loose Fit Bermuda Shorts", price: 80, oldPrice: null, rating: 3.0, category: "Shorts", color: "blue", size: ["Medium", "Large"], image: "../images/bermuda-shorts-1.jpg" },
-      { id: "faded-skinny-jeans", name: "Faded Skinny Jeans", price: 210, oldPrice: null, rating: 4.5, category: "Jeans", color: "blue", size: ["Medium", "Large"], image: "../images/faded-skinny-1.jpg" },
+      { id: "vertical-striped-shirt", name: "Vertical Striped Shirt", price: 212, oldPrice: 232, rating: 5.0, category: "Shirts", isNew: false, color: "green", size: ["Medium", "Large"], image: "../images/vertical-striped-1.jpg" },
+      { id: "courage-graphic-tee", name: "Courage Graphic T-shirt", price: 145, oldPrice: null, rating: 4.0, category: "T-shirts", isNew: false, color: "orange", size: ["Small", "Medium", "Large"], image: "../images/courage-graphic-1.jpg" },
+      { id: "bermuda-shorts", name: "Loose Fit Bermuda Shorts", price: 80, oldPrice: null, rating: 3.0, category: "Shorts", isNew: false, color: "blue", size: ["Medium", "Large"], image: "../images/bermuda-shorts-1.jpg" },
+      { id: "faded-skinny-jeans", name: "Faded Skinny Jeans", price: 210, oldPrice: null, rating: 4.5, category: "Jeans", isNew: false, color: "blue", size: ["Medium", "Large"], image: "../images/faded-skinny-1.jpg" },
 
-      { id: "one-life-tee", name: "ONE LIFE GRAPHIC T-SHIRT", price: 260, oldPrice: 300, rating: 4.5, category: "T-shirts", color: "green", size: ["Small", "Medium", "Large"], image: "../images/one-life-1.jpg" },
-      { id: "gradient-graphic-tee", name: "Gradient Graphic T-shirt", price: 145, oldPrice: 242, rating: 3.5, category: "T-shirts", color: "white", size: ["Small", "Medium", "Large"], image: "../images/gradient-graphic-1.jpg" },
-      { id: "polo-tipping-details", name: "Polo with Tipping Details", price: 180, oldPrice: 242, rating: 4.5, category: "Shirts", color: "pink", size: ["Medium", "Large"], image: "../images/polo-tipping-1.jpg" },
-      { id: "black-striped-tee", name: "Black Striped T-shirt", price: 120, oldPrice: 150, rating: 5.0, category: "T-shirts", color: "black", size: ["Small", "Medium", "Large"], image: "../images/black-striped-1.jpg" },
-      { id: "polo-contrast-trims", name: "Polo with Contrast Trims", price: 212, oldPrice: 242, rating: 4.0, category: "Shirts", color: "blue", size: ["Medium", "Large"], image: "../images/polo-contrast-1.jpg" }
+      { id: "one-life-tee", name: "ONE LIFE GRAPHIC T-SHIRT", price: 260, oldPrice: 300, rating: 4.5, category: "T-shirts", isNew: false, color: "green", size: ["Small", "Medium", "Large"], image: "../images/one-life-1.jpg" },
+      { id: "gradient-graphic-tee", name: "Gradient Graphic T-shirt", price: 145, oldPrice: 242, rating: 3.5, category: "T-shirts", isNew: false, color: "white", size: ["Small", "Medium", "Large"], image: "../images/gradient-graphic-1.jpg" },
+      { id: "polo-tipping-details", name: "Polo with Tipping Details", price: 180, oldPrice: 242, rating: 4.5, category: "Shirts", isNew: false, color: "pink", size: ["Medium", "Large"], image: "../images/polo-tipping-1.jpg" },
+      { id: "black-striped-tee", name: "Black Striped T-shirt", price: 120, oldPrice: 150, rating: 5.0, category: "T-shirts", isNew: false, color: "black", size: ["Small", "Medium", "Large"], image: "../images/black-striped-1.jpg" },
+      { id: "polo-contrast-trims", name: "Polo with Contrast Trims", price: 212, oldPrice: 242, rating: 4.0, category: "Shirts", isNew: false, color: "blue", size: ["Medium", "Large"], image: "../images/polo-contrast-1.jpg" }
     ];
 
     let currentCategory = "All";
     let selectedColors = [];
     let selectedSizes = [];
 
-    // Mở / Đóng bộ lọc trên mobile
+    // 2. Đọc tham số URL (?filter=on-sale hoặc ?filter=new-arrivals)
+    const urlParams = new URLSearchParams(window.location.search);
+    const activeUrlFilter = urlParams.get("filter"); // "on-sale" | "new-arrivals" | null
+
+    // Tự động đổi Tiêu đề trang & Breadcrumb
+    const pageTitleEl = document.querySelector(".category-page-title");
+    const breadcrumbEl = document.querySelector(".breadcrumb span");
+
+    if (activeUrlFilter === "on-sale") {
+      if (pageTitleEl) pageTitleEl.textContent = "On Sale";
+      if (breadcrumbEl) breadcrumbEl.textContent = "On Sale";
+      document.title = "SHOP.CO | On Sale";
+    } else if (activeUrlFilter === "new-arrivals") {
+      if (pageTitleEl) pageTitleEl.textContent = "New Arrivals";
+      if (breadcrumbEl) breadcrumbEl.textContent = "New Arrivals";
+      document.title = "SHOP.CO | New Arrivals";
+    }
+
+    // 3. Mở / Đóng bộ lọc Mobile
     const filterSidebar = document.getElementById("filterSidebar");
     const btnOpenMobile = document.getElementById("btnOpenMobileFilter");
     const btnCloseMobile = document.getElementById("btnCloseMobileFilter");
@@ -189,7 +208,7 @@
       applyFilters();
     }
 
-    // Xử lý thanh trượt giá
+    // Thanh trượt giá
     const priceRangeInput = document.getElementById("priceRange");
     const currentPriceDisplay = document.getElementById("currentPriceDisplay");
     priceRangeInput.addEventListener("input", (e) => {
@@ -230,19 +249,30 @@
       applyFilters();
     }
 
-    // Hàm tạo sao an toàn chống lỗi NaN
     function getSafeStars(rating) {
       const num = Number(rating) || 4;
       const count = Math.min(5, Math.max(0, Math.round(num)));
       return "&#9733;".repeat(count) + "&#9734;".repeat(5 - count);
     }
 
-    // Hàm lọc và vẽ sản phẩm
+    // 4. Hàm lọc sản phẩm có hỗ trợ On Sale và New Arrivals
     function applyFilters() {
       const maxPrice = parseFloat(priceRangeInput.value) || 300;
       const sortBy = document.getElementById("sortSelect")?.value || "popular";
 
       let filtered = PRODUCTS_DATA.filter(item => {
+        // Lọc theo chế độ On Sale
+        if (activeUrlFilter === "on-sale") {
+          const isOnSale = item.oldPrice !== null && item.oldPrice > item.price;
+          if (!isOnSale) return false;
+        }
+
+        // Lọc theo chế độ New Arrivals
+        if (activeUrlFilter === "new-arrivals") {
+          if (!item.isNew) return false;
+        }
+
+        // Các bộ lọc bổ sung: Category, Price, Color, Size
         const matchCat = (currentCategory === "All") || (item.category.toLowerCase() === currentCategory.toLowerCase());
         const matchPrice = item.price <= maxPrice;
         const matchColor = (selectedColors.length === 0) || selectedColors.includes(item.color);
@@ -250,6 +280,7 @@
         return matchCat && matchPrice && matchColor && matchSize;
       });
 
+      // Sắp xếp
       if (sortBy === "low-high") filtered.sort((a, b) => a.price - b.price);
       else if (sortBy === "high-low") filtered.sort((a, b) => b.price - a.price);
       else if (sortBy === "rating") filtered.sort((a, b) => b.rating - a.rating);
@@ -257,7 +288,7 @@
       const grid = document.getElementById("productGrid");
       const showingCount = document.getElementById("showingCount");
       if (showingCount) {
-        showingCount.textContent = `Showing 1-${filtered.length} of ${PRODUCTS_DATA.length} Products`;
+        showingCount.textContent = `Showing 1-${filtered.length} of ${filtered.length} Products`;
       }
 
       if (filtered.length === 0) {
@@ -266,9 +297,9 @@
       }
 
       grid.innerHTML = filtered.map(item => `
-        <a href="product.html?id=${item.id || 'one-life-tee'}" class="product-card">
+        <a href="product.html?id=${item.id}" class="product-card">
           <div class="product-img">
-            <img src="${item.image}" alt="${item.name}" />
+            <img src="${item.image}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=400'" />
           </div>
           <p class="product-name" title="${item.name}">${item.name}</p>
           <div class="product-rating">
@@ -284,7 +315,6 @@
       `).join("");
     }
 
-    // Tự động khởi tạo giá trị $300 khi tải trang
     document.addEventListener("DOMContentLoaded", () => {
       if (priceRangeInput && currentPriceDisplay) {
         priceRangeInput.value = 300;
