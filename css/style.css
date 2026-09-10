@@ -971,6 +971,115 @@ footer {
   padding-top: 20px;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
+/* =======================================================
+   NÂNG CẤP THANH TRƯỢT PRICE VÀ BỘ LỌC CATEGORY
+   ======================================================= */
+/* Thanh Range Slider chuẩn giao diện Shop.co */
+.price-slider-wrap {
+  margin: 12px 0;
+}
+.custom-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 5px;
+  background: #000000; /* Vệt màu đen */
+  outline: none;
+  cursor: pointer;
+}
+/* Con trỏ tròn kéo giá */
+.custom-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #000000;
+  border: 3px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  cursor: grab;
+  transition: transform 0.1s;
+}
+.custom-range::-webkit-slider-thumb:active {
+  transform: scale(1.2);
+  cursor: grabbing;
+}
+.custom-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #000000;
+  border: 3px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  cursor: grab;
+}
+
+/* Hiển thị giá tiền bên dưới thanh kéo */
+.price-values-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 15px;
+  margin-top: 10px;
+}
+.price-tag-current {
+  background: #000000;
+  color: #ffffff;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+/* Danh mục Category có thể click */
+.category-link-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 15px;
+  transition: all 0.2s;
+}
+.category-link-item:hover, .category-link-item.active {
+  color: #000000;
+  font-weight: 700;
+  padding-left: 4px;
+}
+
+/* Dấu tích khi chọn màu */
+.color-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  transition: transform 0.15s, border-color 0.15s;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+.color-dot:hover {
+  transform: scale(1.1);
+}
+.color-dot.active {
+  box-shadow: 0 0 0 2px #000000;
+}
+
+/* Select box sắp xếp (Sort by) đẹp */
+.sort-select {
+  border: none;
+  background: transparent;
+  font-weight: 700;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+  padding: 4px 8px;
+}
 
 /* --- 15. CART SPECIFIC --- */
 .cart-layout {

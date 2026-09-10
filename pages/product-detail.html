@@ -40,81 +40,85 @@
     </nav>
   </header>
 
-  <!-- Main Product Detail -->
   <main class="container">
     <div class="breadcrumb">
       <a href="../index.html">Home</a> &gt; <a href="category.html">Shop</a> &gt; <a href="category.html">Men</a> &gt; <span>T-shirts</span>
     </div>
 
-    <!-- Gallery 3 ảnh dọc bên trái + Cột thông tin chi tiết -->
+    <!-- Product Layout -->
     <div class="product-detail-layout">
+      <!-- Gallery 3 ảnh xếp dọc -->
       <div class="gallery-wrap">
         <div class="thumbnail-list">
           <div class="thumb-img active" onclick="switchMainImage(this, 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=700')">
-            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300" alt="Front view" />
+            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300" alt="Thumbnail 1" />
           </div>
           <div class="thumb-img" onclick="switchMainImage(this, 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=700')">
-            <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=300" alt="Back view" />
+            <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=300" alt="Thumbnail 2" />
           </div>
           <div class="thumb-img" onclick="switchMainImage(this, 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=700')">
-            <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=300" alt="Model view" />
+            <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=300" alt="Thumbnail 3" />
           </div>
         </div>
         <div class="main-img-box">
-          <img id="mainProductImg" src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=700" alt="One Life Graphic T-Shirt" />
+          <img id="mainProductImg" src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=700" alt="Main Product" />
         </div>
       </div>
 
+      <!-- Thông tin sản phẩm -->
       <div>
-        <h1 class="product-title">ONE LIFE GRAPHIC T-SHIRT</h1>
+        <h1 class="product-title" id="productTitle">ONE LIFE GRAPHIC T-SHIRT</h1>
+        
         <div class="product-detail-rating">
           <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>
           <span class="rating-num">4.5/5</span>
         </div>
+
         <div class="product-detail-price">
-          <span>$260</span>
+          <span>$<span id="productPrice">260</span></span>
           <span class="old-price">$300</span>
           <span class="badge-sale">-40%</span>
         </div>
+
         <p class="product-desc">
           This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.
         </p>
 
         <hr class="product-divider" />
 
-        <!-- Select Colors -->
+        <!-- Select Colors có gắn data-color -->
         <div>
           <p class="option-label">Select Colors</p>
           <div class="color-options-row">
-            <div class="color-circle" style="background:#4F4631;" onclick="selectColor(this)">&#10003;</div>
-            <div class="color-circle" style="background:#314F4A;" onclick="selectColor(this)"></div>
-            <div class="color-circle" style="background:#31344F;" onclick="selectColor(this)"></div>
+            <div class="color-circle active" data-color="Olive Green" style="background:#4F4631;" onclick="selectColor(this)">&#10003;</div>
+            <div class="color-circle" data-color="Deep Teal" style="background:#314F4A;" onclick="selectColor(this)"></div>
+            <div class="color-circle" data-color="Dark Navy" style="background:#31344F;" onclick="selectColor(this)"></div>
           </div>
         </div>
 
         <hr class="product-divider" />
 
-        <!-- Choose Size -->
+        <!-- Choose Size có gắn data-size -->
         <div>
           <p class="option-label">Choose Size</p>
           <div class="size-chips-row">
-            <button type="button" class="size-chip" onclick="selectSize(this)">Small</button>
-            <button type="button" class="size-chip" onclick="selectSize(this)">Medium</button>
-            <button type="button" class="size-chip active" onclick="selectSize(this)">Large</button>
-            <button type="button" class="size-chip" onclick="selectSize(this)">X-Large</button>
+            <button type="button" class="size-chip" data-size="Small" onclick="selectSize(this)">Small</button>
+            <button type="button" class="size-chip" data-size="Medium" onclick="selectSize(this)">Medium</button>
+            <button type="button" class="size-chip active" data-size="Large" onclick="selectSize(this)">Large</button>
+            <button type="button" class="size-chip" data-size="X-Large" onclick="selectSize(this)">X-Large</button>
           </div>
         </div>
 
         <hr class="product-divider" />
 
-        <!-- Quantity Counter & Add to Cart -->
+        <!-- Tăng giảm số lượng và nút bấm Add to Cart -->
         <div class="actions-row">
           <div class="qty-selector">
             <span class="qty-btn" id="qtyMinus">&minus;</span>
             <span id="qtyVal">1</span>
             <span class="qty-btn" id="qtyPlus">+</span>
           </div>
-          <button type="button" class="btn-add-cart" onclick="location.href='cart.html'">Add to Cart</button>
+          <button type="button" class="btn-add-cart" id="btnAddToCart">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -126,7 +130,7 @@
       <div class="tab-item">FAQs</div>
     </div>
 
-    <!-- All Reviews (Đầy đủ 6 thẻ chuẩn Figma 100%) -->
+    <!-- All Reviews (6 thẻ chuẩn) -->
     <section>
       <div class="reviews-control-bar">
         <h3>All Reviews <span>(451)</span></h3>
@@ -146,7 +150,6 @@
           </div>
           <div class="review-posted-date">Posted on August 14, 2023</div>
         </div>
-
         <div class="review-card-item">
           <div>
             <div class="review-card-header"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div><button class="btn-more-options">&#8943;</button></div>
@@ -155,7 +158,6 @@
           </div>
           <div class="review-posted-date">Posted on August 15, 2023</div>
         </div>
-
         <div class="review-card-item">
           <div>
             <div class="review-card-header"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div><button class="btn-more-options">&#8943;</button></div>
@@ -164,7 +166,6 @@
           </div>
           <div class="review-posted-date">Posted on August 16, 2023</div>
         </div>
-
         <div class="review-card-item">
           <div>
             <div class="review-card-header"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div><button class="btn-more-options">&#8943;</button></div>
@@ -173,7 +174,6 @@
           </div>
           <div class="review-posted-date">Posted on August 17, 2023</div>
         </div>
-
         <div class="review-card-item">
           <div>
             <div class="review-card-header"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div><button class="btn-more-options">&#8943;</button></div>
@@ -182,7 +182,6 @@
           </div>
           <div class="review-posted-date">Posted on August 18, 2023</div>
         </div>
-
         <div class="review-card-item">
           <div>
             <div class="review-card-header"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><button class="btn-more-options">&#8943;</button></div>
@@ -230,7 +229,7 @@
     </section>
   </main>
 
-  <!-- Floating Newsletter -->
+  <!-- Newsletter -->
   <div class="container newsletter-wrapper">
     <div class="newsletter-box">
       <h2>STAY UPTO DATE ABOUT OUR LATEST OFFERS</h2>
@@ -244,7 +243,7 @@
     </div>
   </div>
 
-  <!-- Footer -->
+  <!-- Footer 5 cột chuẩn -->
   <footer>
     <div class="container footer-top">
       <div class="footer-about">
@@ -275,7 +274,7 @@
       </div>
     </div>
 
-    <!-- Dòng bản quyền & 5 thẻ thanh toán (Khóa cứng kích thước) -->
+    <!-- Dòng bản quyền & 5 thẻ thanh toán chuẩn -->
     <div class="container footer-bottom">
       <p>Shop.co &copy; 2000-2023, All Rights Reserved</p>
       <div class="payment-badges">
@@ -288,7 +287,11 @@
     </div>
   </footer>
 
+  <!-- SCRIPT LOGIC CHI TIẾT -->
   <script>
+    let selectedColor = "Olive Green";
+    let selectedSize = "Large";
+
     function switchMainImage(element, src) {
       document.querySelectorAll('.thumb-img').forEach(el => el.classList.remove('active'));
       element.classList.add('active');
@@ -303,17 +306,20 @@
     function selectColor(element) {
       document.querySelectorAll('.color-circle').forEach(el => el.innerHTML = '');
       element.innerHTML = '&#10003;';
+      selectedColor = element.getAttribute('data-color') || "Olive Green";
     }
 
     function selectSize(element) {
       document.querySelectorAll('.size-chip').forEach(el => el.classList.remove('active'));
       element.classList.add('active');
+      selectedSize = element.getAttribute('data-size') || "Large";
     }
 
     document.addEventListener('DOMContentLoaded', () => {
       const minus = document.getElementById('qtyMinus');
       const plus = document.getElementById('qtyPlus');
       const val = document.getElementById('qtyVal');
+      
       if (minus && plus && val) {
         minus.addEventListener('click', () => {
           let c = parseInt(val.textContent);
@@ -324,8 +330,30 @@
           val.textContent = c + 1;
         });
       }
+
+      // Khi bấm nút Add to Cart -> Đưa thông số thực tế vào LocalStorage
+      const btnAdd = document.getElementById('btnAddToCart');
+      if (btnAdd) {
+        btnAdd.addEventListener('click', () => {
+          const qty = parseInt(val ? val.textContent : 1);
+          const productToAdd = {
+            id: "one-life-tee",
+            name: "ONE LIFE GRAPHIC T-SHIRT",
+            price: 260,
+            image: document.getElementById('mainProductImg').src,
+            size: selectedSize,
+            color: selectedColor,
+            quantity: qty
+          };
+
+          addToCart(productToAdd);
+          alert(`Đã thêm ${qty} sản phẩm "${productToAdd.name}" (Size: ${selectedSize}, Màu: ${selectedColor}) vào giỏ hàng!`);
+          window.location.href = "cart.html"; // Chuyển sang giỏ hàng xem kết quả
+        });
+      }
     });
   </script>
+  <script src="../assets/cart.js"></script>
   <script src="../assets/global.js"></script>
 </body>
 </html>

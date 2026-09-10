@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <!-- Top Announcement Bar -->
+  <!-- Top bar -->
   <div class="top-banner">
     Sign up and get 20% off to your first order. <a href="#">Sign Up Now</a>
     <span class="close-btn" onclick="this.parentElement.style.display='none'">&times;</span>
@@ -41,76 +41,24 @@
     <h1 style="font-size:36px; font-weight:900; margin-bottom: 24px;">YOUR CART</h1>
 
     <div class="cart-layout">
-      <!-- Cột sản phẩm giỏ hàng -->
-      <section class="cart-items-container">
-        <!-- Item 1 -->
-        <div class="cart-item" data-price="145">
-          <div class="cart-item-img"><img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=150" alt="Gradient Graphic T-shirt" /></div>
-          <div class="cart-item-details">
-            <div class="cart-item-top"><span class="cart-item-title">Gradient Graphic T-shirt</span><button class="cart-item-remove">&#128465;</button></div>
-            <div class="cart-item-specs">Size: <span>Large</span></div>
-            <div class="cart-item-specs">Color: <span>White</span></div>
-            <div class="cart-item-bottom">
-              <span class="cart-item-price">$145</span>
-              <div class="qty-selector" style="width:130px; padding:8px 16px;">
-                <span class="cart-qty-minus qty-btn">&minus;</span>
-                <span class="cart-qty-val">1</span>
-                <span class="cart-qty-plus qty-btn">+</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Item 2 -->
-        <div class="cart-item" data-price="180">
-          <div class="cart-item-img"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=150" alt="Checkered Shirt" /></div>
-          <div class="cart-item-details">
-            <div class="cart-item-top"><span class="cart-item-title">Checkered Shirt</span><button class="cart-item-remove">&#128465;</button></div>
-            <div class="cart-item-specs">Size: <span>Medium</span></div>
-            <div class="cart-item-specs">Color: <span>Red</span></div>
-            <div class="cart-item-bottom">
-              <span class="cart-item-price">$180</span>
-              <div class="qty-selector" style="width:130px; padding:8px 16px;">
-                <span class="cart-qty-minus qty-btn">&minus;</span>
-                <span class="cart-qty-val">1</span>
-                <span class="cart-qty-plus qty-btn">+</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Item 3 -->
-        <div class="cart-item" data-price="240">
-          <div class="cart-item-img"><img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=150" alt="Skinny Fit Jeans" /></div>
-          <div class="cart-item-details">
-            <div class="cart-item-top"><span class="cart-item-title">Skinny Fit Jeans</span><button class="cart-item-remove">&#128465;</button></div>
-            <div class="cart-item-specs">Size: <span>Large</span></div>
-            <div class="cart-item-specs">Color: <span>Blue</span></div>
-            <div class="cart-item-bottom">
-              <span class="cart-item-price">$240</span>
-              <div class="qty-selector" style="width:130px; padding:8px 16px;">
-                <span class="cart-qty-minus qty-btn">&minus;</span>
-                <span class="cart-qty-val">1</span>
-                <span class="cart-qty-plus qty-btn">+</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      <!-- Cột sản phẩm: Sẽ được javascript render động vào đây -->
+      <section class="cart-items-container" id="cartItemsContainer">
+        <!-- Javascript sẽ tự động điền danh sách vào đây -->
       </section>
 
-      <!-- Order Summary -->
+      <!-- Cột Order Summary -->
       <aside class="order-summary-box">
         <h2 class="order-summary-title">Order Summary</h2>
-        <div class="summary-row"><span>Subtotal</span><span class="summary-val" id="summary-subtotal">$565</span></div>
-        <div class="summary-row"><span>Discount (-20%)</span><span class="summary-discount" id="summary-discount">-$113</span></div>
-        <div class="summary-row"><span>Delivery Fee</span><span class="summary-val" id="summary-delivery">$15</span></div>
-        <div class="summary-row total"><span>Total</span><span id="summary-total">$467</span></div>
+        <div class="summary-row"><span>Subtotal</span><span class="summary-val" id="summary-subtotal">$0</span></div>
+        <div class="summary-row"><span>Discount (-20%)</span><span class="summary-discount" id="summary-discount">-$0</span></div>
+        <div class="summary-row"><span>Delivery Fee</span><span class="summary-val" id="summary-delivery">$0</span></div>
+        <div class="summary-row total"><span>Total</span><span id="summary-total">$0</span></div>
 
         <div class="promo-box">
-          <div class="promo-input-wrap"><span>&#127991;</span><input type="text" placeholder="Add promo code" /></div>
-          <button class="btn-primary">Apply</button>
+          <div class="promo-input-wrap"><span>&#127991;</span><input type="text" id="promoInput" placeholder="Add promo code (e.g. SHOP20)" /></div>
+          <button class="btn-primary" id="applyPromoBtn">Apply</button>
         </div>
-        <button class="btn-primary checkout-btn">Go to Checkout &rarr;</button>
+        <button class="btn-primary checkout-btn" id="checkoutBtn">Go to Checkout &rarr;</button>
       </aside>
     </div>
   </main>
@@ -129,7 +77,7 @@
     </div>
   </div>
 
-  <!-- Footer đầy đủ 5 cột như Trang chủ -->
+  <!-- Footer đầy đủ 5 cột -->
   <footer>
     <div class="container footer-top">
       <div class="footer-about">
@@ -172,7 +120,7 @@
     </div>
   </footer>
 
-  <script src="../assets/global.js"></script>
   <script src="../assets/cart.js"></script>
+  <script src="../assets/global.js"></script>
 </body>
 </html>
