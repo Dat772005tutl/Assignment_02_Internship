@@ -8,28 +8,40 @@
 </head>
 <body>
 
-  <!-- Top bar -->
+  <!-- Top Announcement Bar -->
   <div class="top-banner">
     Sign up and get 20% off to your first order. <a href="#">Sign Up Now</a>
     <span class="close-btn" onclick="this.parentElement.style.display='none'">&times;</span>
   </div>
 
-  <!-- Navbar -->
+  <!-- Navbar Mobile & Desktop -->
   <header class="container">
     <nav class="navbar">
-      <div class="mobile-menu-btn">&#9776;</div>
-      <a href="../index.html" class="nav-logo">SHOP.CO</a>
+      <!-- Cụm bên trái: Hamburger Menu + Logo -->
+      <div class="nav-left-mobile">
+        <div class="mobile-menu-btn" onclick="alert('Menu SHOP.CO:\n- Shop\n- On Sale\n- New Arrivals\n- Brands')">&#9776;</div>
+        <a href="../index.html" class="nav-logo">SHOP.CO</a>
+      </div>
+
+      <!-- Menu links Desktop -->
       <ul class="nav-links">
         <li><a href="category.html">Shop <svg width="12" height="12" viewBox="0 0 24 24"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg></a></li>
         <li><a href="category.html">On Sale</a></li>
         <li><a href="category.html">New Arrivals</a></li>
         <li><a href="category.html">Brands</a></li>
       </ul>
-      <div class="nav-search">
+
+      <!-- Thanh tìm kiếm Desktop -->
+      <div class="nav-search nav-search-desktop">
         <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
         <input type="text" id="searchInput" placeholder="Search for products..." />
       </div>
+
+      <!-- Cụm Icon bên phải: Có thêm Icon Search cho Mobile chuẩn Figma -->
       <div class="nav-icons">
+        <div class="mobile-search-trigger" onclick="promptSearch()">
+          <svg width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        </div>
         <a href="cart.html" title="Cart"><svg width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg></a>
         <a href="#" title="Account"><svg width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg></a>
       </div>
@@ -37,109 +49,124 @@
   </header>
 
   <main class="container">
+    <!-- Breadcrumb -->
     <div class="breadcrumb"><a href="../index.html">Home</a> &gt; <span>Casual</span></div>
 
+    <!-- Hàng tiêu đề chuẩn Figma trên Mobile & Desktop -->
+    <div class="category-header-row">
+      <h2>Casual</h2>
+      <div class="category-meta-wrap">
+        <span class="meta-text" id="showingCount">Showing 1-10 of 100 Products</span>
+        <!-- Nút icon bộ gạt 🎚 mở Drawer Filter trên Mobile -->
+        <button class="btn-filter-toggle" id="btnOpenMobileFilter" title="Filters">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/></svg>
+        </button>
+      </div>
+    </div>
+
     <div class="category-layout">
-      <!-- SIDEBAR BỘ LỌC BÊN TRÁI -->
-      <aside class="filter-sidebar">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-          <h3>Filters</h3>
-          <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/></svg>
-        </div>
-        
-        <!-- Danh mục Category -->
-        <div class="filter-group">
-          <div class="category-link-item active" onclick="selectCategory(this, 'All')">All Categories <span>&gt;</span></div>
-          <div class="category-link-item" onclick="selectCategory(this, 'T-shirts')">T-shirts <span>&gt;</span></div>
-          <div class="category-link-item" onclick="selectCategory(this, 'Shorts')">Shorts <span>&gt;</span></div>
-          <div class="category-link-item" onclick="selectCategory(this, 'Shirts')">Shirts <span>&gt;</span></div>
-          <div class="category-link-item" onclick="selectCategory(this, 'Hoodie')">Hoodie <span>&gt;</span></div>
-          <div class="category-link-item" onclick="selectCategory(this, 'Jeans')">Jeans <span>&gt;</span></div>
-        </div>
-
-        <!-- Thanh trượt giá (Price Slider) -->
-        <div class="filter-group">
-          <h4>Price <span>&#9652;</span></h4>
-          <div class="price-slider-wrap">
-            <input type="range" class="custom-range" id="priceRange" min="50" max="250" value="250" step="5" />
+      <!-- BỘ LỌC FILTERS (DESKTOP: SIDEBAR / MOBILE: SLIDE-UP DRAWER) -->
+      <aside class="filter-sidebar" id="filterSidebar">
+        <div class="filter-drawer-card">
+          <!-- Header của Drawer trên Mobile -->
+          <div class="filter-drawer-header">
+            <h3>Filters</h3>
+            <button class="filter-drawer-close" id="btnCloseMobileFilter">&times;</button>
           </div>
-          <div class="price-values-row">
-            <span>$50</span>
-            <span class="price-tag-current">Tối đa: <b id="currentPriceDisplay">$250</b></span>
+          
+          <!-- Danh mục Category -->
+          <div class="filter-group" style="padding-top:0;">
+            <div class="category-link-item active" onclick="selectCategory(this, 'All')">All Categories <span>&gt;</span></div>
+            <div class="category-link-item" onclick="selectCategory(this, 'T-shirts')">T-shirts <span>&gt;</span></div>
+            <div class="category-link-item" onclick="selectCategory(this, 'Shorts')">Shorts <span>&gt;</span></div>
+            <div class="category-link-item" onclick="selectCategory(this, 'Shirts')">Shirts <span>&gt;</span></div>
+            <div class="category-link-item" onclick="selectCategory(this, 'Hoodie')">Hoodie <span>&gt;</span></div>
+            <div class="category-link-item" onclick="selectCategory(this, 'Jeans')">Jeans <span>&gt;</span></div>
           </div>
-        </div>
 
-        <!-- Bộ lọc Màu sắc -->
-        <div class="filter-group">
-          <h4>Colors <span>&#9652;</span></h4>
-          <div class="color-options">
-            <span class="color-dot" data-color="green" style="background:#00C12B" onclick="toggleColor(this)"></span>
-            <span class="color-dot" data-color="red" style="background:#F50606" onclick="toggleColor(this)"></span>
-            <span class="color-dot" data-color="yellow" style="background:#F5DD06" onclick="toggleColor(this)"></span>
-            <span class="color-dot" data-color="orange" style="background:#F57906" onclick="toggleColor(this)"></span>
-            <span class="color-dot" data-color="cyan" style="background:#06CAF5" onclick="toggleColor(this)"></span>
-            <span class="color-dot" data-color="blue" style="background:#063AF5" onclick="toggleColor(this)"></span>
-            <span class="color-dot" data-color="purple" style="background:#7D06F5" onclick="toggleColor(this)"></span>
-            <span class="color-dot" data-color="pink" style="background:#F506A4" onclick="toggleColor(this)"></span>
-            <span class="color-dot" data-color="white" style="background:#ffffff; color:#000;" onclick="toggleColor(this)"></span>
-            <span class="color-dot" data-color="black" style="background:#000000" onclick="toggleColor(this)"></span>
+          <!-- Price Slider -->
+          <div class="filter-group">
+            <h4>Price <span>&#9652;</span></h4>
+            <div class="price-slider-wrap">
+              <input type="range" class="custom-range" id="priceRange" min="50" max="250" value="200" step="5" />
+            </div>
+            <div class="price-values-row">
+              <span>$50</span>
+              <span class="price-tag-current">Tối đa: <b id="currentPriceDisplay">$200</b></span>
+            </div>
           </div>
-        </div>
 
-        <!-- Bộ lọc Kích cỡ (Size) -->
-        <div class="filter-group">
-          <h4>Size <span>&#9652;</span></h4>
-          <div class="size-chips">
-            <span class="chip" data-size="XX-Small" onclick="toggleSize(this)">XX-Small</span>
-            <span class="chip" data-size="X-Small" onclick="toggleSize(this)">X-Small</span>
-            <span class="chip" data-size="Small" onclick="toggleSize(this)">Small</span>
-            <span class="chip" data-size="Medium" onclick="toggleSize(this)">Medium</span>
-            <span class="chip" data-size="Large" onclick="toggleSize(this)">Large</span>
-            <span class="chip" data-size="X-Large" onclick="toggleSize(this)">X-Large</span>
+          <!-- Colors -->
+          <div class="filter-group">
+            <h4>Colors <span>&#9652;</span></h4>
+            <div class="color-options">
+              <span class="color-dot" data-color="green" style="background:#00C12B" onclick="toggleColor(this)"></span>
+              <span class="color-dot" data-color="red" style="background:#F50606" onclick="toggleColor(this)"></span>
+              <span class="color-dot" data-color="yellow" style="background:#F5DD06" onclick="toggleColor(this)"></span>
+              <span class="color-dot" data-color="orange" style="background:#F57906" onclick="toggleColor(this)"></span>
+              <span class="color-dot" data-color="cyan" style="background:#06CAF5" onclick="toggleColor(this)"></span>
+              <span class="color-dot" data-color="blue" style="background:#063AF5" onclick="toggleColor(this)"></span>
+              <span class="color-dot" data-color="purple" style="background:#7D06F5" onclick="toggleColor(this)"></span>
+              <span class="color-dot" data-color="pink" style="background:#F506A4" onclick="toggleColor(this)"></span>
+              <span class="color-dot" data-color="white" style="background:#ffffff; color:#000;" onclick="toggleColor(this)"></span>
+              <span class="color-dot" data-color="black" style="background:#000000" onclick="toggleColor(this)"></span>
+            </div>
           </div>
-        </div>
 
-        <!-- Nút hành động -->
-        <button class="btn-primary" style="width:100%; margin-top:20px;" onclick="applyFilters()">Apply Filter</button>
-        <button class="btn-outline" style="width:100%; margin-top:10px; padding:10px;" onclick="resetFilters()">Reset Filter</button>
+          <!-- Size (Đầy đủ 3 hàng chip như Figma) -->
+          <div class="filter-group">
+            <h4>Size <span>&#9652;</span></h4>
+            <div class="size-chips">
+              <span class="chip" data-size="XX-Small" onclick="toggleSize(this)">XX-Small</span>
+              <span class="chip" data-size="X-Small" onclick="toggleSize(this)">X-Small</span>
+              <span class="chip" data-size="Small" onclick="toggleSize(this)">Small</span>
+              <span class="chip" data-size="Medium" onclick="toggleSize(this)">Medium</span>
+              <span class="chip active" data-size="Large" onclick="toggleSize(this)">Large</span>
+              <span class="chip" data-size="X-Large" onclick="toggleSize(this)">X-Large</span>
+              <span class="chip" data-size="XX-Large" onclick="toggleSize(this)">XX-Large</span>
+              <span class="chip" data-size="3X-Large" onclick="toggleSize(this)">3X-Large</span>
+              <span class="chip" data-size="4X-Large" onclick="toggleSize(this)">4X-Large</span>
+            </div>
+          </div>
+
+          <!-- Dress Style Accordion -->
+          <div class="filter-group">
+            <h4>Dress Style <span>&#9652;</span></h4>
+            <div class="category-link-item" onclick="selectStyle(this, 'Casual')">Casual <span>&gt;</span></div>
+            <div class="category-link-item" onclick="selectStyle(this, 'Formal')">Formal <span>&gt;</span></div>
+            <div class="category-link-item" onclick="selectStyle(this, 'Party')">Party <span>&gt;</span></div>
+            <div class="category-link-item" onclick="selectStyle(this, 'Gym')">Gym <span>&gt;</span></div>
+          </div>
+
+          <!-- Nút bấm Apply Filter -->
+          <button class="btn-primary" style="width:100%; margin-top:20px; padding:16px;" onclick="closeAndApplyFilter()">Apply Filter</button>
+        </div>
       </aside>
 
-      <!-- DANH SÁCH SẢN PHẨM BÊN PHẢI -->
-      <section>
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:10px;">
-          <h2>Casual</h2>
-          <div style="color:var(--text-muted); font-size:14px; display:flex; align-items:center; gap:8px;">
-            <span id="showingCount">Showing 1-9 of 9 Products</span> | 
-            <span>Sort by:</span>
-            <select class="sort-select" id="sortSelect" onchange="applyFilters()">
-              <option value="popular">Most Popular</option>
-              <option value="low-high">Price: Low to High</option>
-              <option value="high-low">Price: High to Low</option>
-              <option value="rating">Rating: Highest</option>
-            </select>
-          </div>
+      <!-- CỘT DANH SÁCH SẢN PHẨM BÊN PHẢI -->
+      <section style="width:100%;">
+        <!-- Lưới sản phẩm: 2 Cột trên Mobile / 3 Cột trên Desktop -->
+        <div class="product-grid" id="productGrid">
+          <!-- Render tự động bằng Javascript -->
         </div>
 
-        <!-- Lưới sản phẩm được render động bằng JS -->
-        <div class="product-grid" id="productGrid" style="grid-template-columns: repeat(3, 1fr);">
-          <!-- JavaScript sẽ hiển thị sản phẩm vào đây -->
-        </div>
-
-        <!-- Phân trang -->
+        <!-- Phân trang chuẩn Figma -->
         <div class="pagination">
-          <button class="btn-outline">&larr; Previous</button>
-          <div style="display:flex; gap:10px; font-weight:600;">
+          <button class="btn-outline pagination-btn">&larr; Previous</button>
+          <div style="display:flex; gap:8px; align-items:center; font-weight:600;">
             <span style="background:var(--gray-bg); padding:6px 12px; border-radius:8px;">1</span>
             <span style="padding:6px 12px; cursor:pointer;">2</span>
-            <span style="padding:6px 12px; cursor:pointer;">3</span>
+            <span>...</span>
+            <span style="padding:6px 12px; cursor:pointer;">9</span>
+            <span style="padding:6px 12px; cursor:pointer;">10</span>
           </div>
-          <button class="btn-outline">Next &rarr;</button>
+          <button class="btn-outline pagination-btn">Next &rarr;</button>
         </div>
       </section>
     </div>
   </main>
 
-  <!-- Newsletter -->
+  <!-- Floating Newsletter Box -->
   <div class="container newsletter-wrapper">
     <div class="newsletter-box">
       <h2>STAY UPTO DATE ABOUT OUR LATEST OFFERS</h2>
@@ -153,7 +180,7 @@
     </div>
   </div>
 
-  <!-- Footer 5 cột chuẩn -->
+  <!-- Footer chuẩn Mobile Figma (2 cột mỗi hàng) -->
   <footer>
     <div class="container footer-top">
       <div class="footer-about">
@@ -166,6 +193,8 @@
           <div class="social-circle"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></div>
         </div>
       </div>
+
+      <!-- Hàng 1: COMPANY & HELP -->
       <div class="footer-col">
         <h4>COMPANY</h4>
         <ul><li><a href="#">About</a></li><li><a href="#">Features</a></li><li><a href="#">Works</a></li><li><a href="#">Career</a></li></ul>
@@ -174,6 +203,8 @@
         <h4>HELP</h4>
         <ul><li><a href="#">Customer Support</a></li><li><a href="#">Delivery Details</a></li><li><a href="#">Terms & Conditions</a></li><li><a href="#">Privacy Policy</a></li></ul>
       </div>
+
+      <!-- Hàng 2: FAQ & RESOURCES -->
       <div class="footer-col">
         <h4>FAQ</h4>
         <ul><li><a href="#">Account</a></li><li><a href="#">Manage Deliveries</a></li><li><a href="#">Orders</a></li><li><a href="#">Payments</a></li></ul>
@@ -184,7 +215,7 @@
       </div>
     </div>
 
-    <!-- Dòng bản quyền & 5 thẻ thanh toán chuẩn -->
+    <!-- Dòng bản quyền & 5 thẻ thanh toán căn giữa trên Mobile -->
     <div class="container footer-bottom">
       <p>Shop.co &copy; 2000-2023, All Rights Reserved</p>
       <div class="payment-badges">
@@ -197,41 +228,57 @@
     </div>
   </footer>
 
-  <!-- =======================================================
-       TOÀN BỘ JAVASCRIPT XỬ LÝ LỌC & THANH TRƯỢT GIÁ NHẢY TIỀN THỰC
-       ======================================================= -->
+  <!-- SCRIPT LOGIC BỘ LỌC & DRAWER MOBILE -->
   <script>
-    // 1. DỮ LIỆU SẢN PHẨM PHONG PHÚ
+    // Dữ liệu sản phẩm chuẩn Figma
     const PRODUCTS_DATA = [
-      { id: 1, name: "Gradient Graphic T-shirt", price: 145, oldPrice: null, rating: 4.5, category: "T-shirts", color: "white", size: ["Small", "Medium", "Large"], image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=300" },
-      { id: 2, name: "Polo with Tipping Details", price: 180, oldPrice: null, rating: 4.5, category: "Shirts", color: "pink", size: ["Medium", "Large"], image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=300" },
+      { id: 1, name: "Gradient Graphic T-shirt", price: 145, oldPrice: 242, rating: 3.5, category: "T-shirts", color: "white", size: ["Small", "Medium", "Large"], image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=300" },
+      { id: 2, name: "Polo with Tipping Details", price: 180, oldPrice: 242, rating: 4.5, category: "Shirts", color: "pink", size: ["Medium", "Large"], image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=300" },
       { id: 3, name: "Black Striped T-shirt", price: 120, oldPrice: 160, rating: 5.0, category: "T-shirts", color: "black", size: ["Small", "Medium", "Large"], image: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=300" },
       { id: 4, name: "Skinny Fit Jeans", price: 240, oldPrice: 260, rating: 3.5, category: "Jeans", color: "blue", size: ["Large", "X-Large"], image: "https://images.unsplash.com/photo-1542272604-787c3835535d?w=300" },
       { id: 5, name: "Checkered Shirt", price: 180, oldPrice: null, rating: 4.5, category: "Shirts", color: "red", size: ["Medium", "Large"], image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300" },
-      { id: 6, name: "Sleeve Striped T-shirt", price: 130, oldPrice: 160, rating: 4.5, category: "T-shirts", color: "orange", size: ["Small", "Medium"], image: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=300" },
-      { id: 7, name: "Vertical Striped Shirt", price: 212, oldPrice: 232, rating: 5.0, category: "Shirts", color: "green", size: ["Medium", "Large"], image: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=300" },
-      { id: 8, name: "Courage Graphic T-shirt", price: 145, oldPrice: null, rating: 4.0, category: "T-shirts", color: "orange", size: ["Small", "Medium", "Large"], image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=300" },
-      { id: 9, name: "Loose Fit Bermuda Shorts", price: 80, oldPrice: null, rating: 3.0, category: "Shorts", color: "blue", size: ["Medium", "Large"], image: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=300" },
-      { id: 10, name: "Faded Skinny Jeans", price: 210, oldPrice: null, rating: 4.5, category: "Jeans", color: "black", size: ["Large", "X-Large"], image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=300" },
-      { id: 11, name: "Casual Graphic Hoodie", price: 195, oldPrice: 220, rating: 4.8, category: "Hoodie", color: "black", size: ["Large", "X-Large"], image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=300" }
+      { id: 6, name: "Sleeve Striped T-shirt", price: 130, oldPrice: 160, rating: 4.5, category: "T-shirts", color: "orange", size: ["Small", "Medium"], image: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=300" }
     ];
 
-    // Trạng thái bộ lọc hiện tại
     let currentCategory = "All";
-    let selectedColors = [];
-    let selectedSizes = [];
+    let selectedColors = ["blue"]; // Mặc định chọn màu Blue như hình Figma
+    let selectedSizes = ["Large"];  // Mặc định chọn Large như hình Figma
 
-    // 2. THANH KÉO GIÁ NHẢY SỐ TIỀN REAL-TIME
-    const priceRangeInput = document.getElementById("priceRange");
-    const currentPriceDisplay = document.getElementById("currentPriceDisplay");
+    // 1. Mở & Đóng Bottom Drawer Filter trên Mobile
+    const filterSidebar = document.getElementById("filterSidebar");
+    const btnOpenMobileFilter = document.getElementById("btnOpenMobileFilter");
+    const btnCloseMobileFilter = document.getElementById("btnCloseMobileFilter");
 
-    priceRangeInput.addEventListener("input", (e) => {
-      const val = e.target.value;
-      currentPriceDisplay.textContent = `$${val}`; // Cập nhật số tiền ngay khi đang kéo chuột
-      applyFilters(); // Tự động lọc sản phẩm theo giá đang kéo
+    btnOpenMobileFilter.addEventListener("click", () => {
+      filterSidebar.classList.add("open");
+      document.body.style.overflow = "hidden"; // Chống cuộn trang khi đang mở drawer
     });
 
-    // 3. CHỌN CATEGORY
+    function closeFilterDrawer() {
+      filterSidebar.classList.remove("open");
+      document.body.style.overflow = "auto";
+    }
+    btnCloseMobileFilter.addEventListener("click", closeFilterDrawer);
+
+    // Bấm ra ngoài vùng card để đóng
+    filterSidebar.addEventListener("click", (e) => {
+      if (e.target === filterSidebar) closeFilterDrawer();
+    });
+
+    function closeAndApplyFilter() {
+      closeFilterDrawer();
+      applyFilters();
+    }
+
+    // 2. Kéo thanh trượt giá
+    const priceRangeInput = document.getElementById("priceRange");
+    const currentPriceDisplay = document.getElementById("currentPriceDisplay");
+    priceRangeInput.addEventListener("input", (e) => {
+      currentPriceDisplay.textContent = `$${e.target.value}`;
+      applyFilters();
+    });
+
+    // 3. Chọn Category
     function selectCategory(element, cat) {
       document.querySelectorAll(".category-link-item").forEach(el => el.classList.remove("active"));
       element.classList.add("active");
@@ -239,7 +286,7 @@
       applyFilters();
     }
 
-    // 4. CHỌN MÀU SẮC (BẬT/TẮT DẤU TÍCH)
+    // 4. Chọn Màu (Có dấu tích)
     function toggleColor(element) {
       const color = element.getAttribute("data-color");
       if (element.classList.contains("active")) {
@@ -248,13 +295,13 @@
         selectedColors = selectedColors.filter(c => c !== color);
       } else {
         element.classList.add("active");
-        element.innerHTML = "&#10003;"; // Hiện dấu tích
+        element.innerHTML = "&#10003;";
         selectedColors.push(color);
       }
       applyFilters();
     }
 
-    // 5. CHỌN SIZE (BẬT/TẮT NÚT ĐEN)
+    // 5. Chọn Size (Nút đen)
     function toggleSize(element) {
       const size = element.getAttribute("data-size");
       if (element.classList.contains("active")) {
@@ -267,46 +314,30 @@
       applyFilters();
     }
 
-    // 6. ÁP DỤNG BỘ LỌC VÀ RENDER SẢN PHẨM
+    // 6. Chọn Dress Style
+    function selectStyle(element, styleName) {
+      alert(`Đã chọn Dress Style: ${styleName}`);
+    }
+
+    // 7. Render sản phẩm ra 2 Cột
     function applyFilters() {
       const maxPrice = parseFloat(priceRangeInput.value);
-      const sortBy = document.getElementById("sortSelect").value;
       const searchQuery = (document.getElementById("searchInput")?.value || "").toLowerCase().trim();
 
-      // Lọc danh sách theo Category, Giá, Màu, Size và Tìm kiếm
       let filtered = PRODUCTS_DATA.filter(item => {
-        const matchCategory = (currentCategory === "All") || (item.category.toLowerCase() === currentCategory.toLowerCase());
+        const matchCat = (currentCategory === "All") || (item.category.toLowerCase() === currentCategory.toLowerCase());
         const matchPrice = item.price <= maxPrice;
         const matchColor = (selectedColors.length === 0) || selectedColors.includes(item.color);
         const matchSize = (selectedSizes.length === 0) || item.size.some(s => selectedSizes.includes(s));
         const matchSearch = item.name.toLowerCase().includes(searchQuery);
-
-        return matchCategory && matchPrice && matchColor && matchSize && matchSearch;
+        return matchCat && matchPrice && matchColor && matchSize && matchSearch;
       });
 
-      // Sắp xếp
-      if (sortBy === "low-high") {
-        filtered.sort((a, b) => a.price - b.price);
-      } else if (sortBy === "high-low") {
-        filtered.sort((a, b) => b.price - a.price);
-      } else if (sortBy === "rating") {
-        filtered.sort((a, b) => b.rating - a.rating);
-      }
-
-      // Render danh sách sản phẩm ra giao diện
       const grid = document.getElementById("productGrid");
-      const countEl = document.getElementById("showingCount");
-
-      countEl.textContent = `Showing 1-${filtered.length} of ${PRODUCTS_DATA.length} Products`;
+      document.getElementById("showingCount").textContent = `Showing 1-${filtered.length} of 100 Products`;
 
       if (filtered.length === 0) {
-        grid.innerHTML = `
-          <div style="grid-column: span 3; text-align: center; padding: 60px 20px;">
-            <h3 style="font-size: 20px; margin-bottom: 8px;">Không tìm thấy sản phẩm phù hợp!</h3>
-            <p style="color: var(--text-muted); margin-bottom: 20px;">Hãy thử kéo tăng khoảng giá hoặc xóa bớt màu/size đang chọn.</p>
-            <button class="btn-primary" onclick="resetFilters()">Đặt lại bộ lọc</button>
-          </div>
-        `;
+        grid.innerHTML = `<div style="grid-column: span 2; text-align:center; padding:40px 10px;">Không có sản phẩm phù hợp</div>`;
         return;
       }
 
@@ -315,10 +346,9 @@
           <div class="product-img">
             <img src="${item.image}" alt="${item.name}" />
           </div>
-          <p class="product-name">${item.name}</p>
+          <p class="product-name" title="${item.name}">${item.name}</p>
           <div class="product-rating">
-            ${"&#9733;".repeat(Math.floor(item.rating))}${"&#9734;".repeat(5 - Math.floor(item.rating))}
-            <span class="rating-num">${item.rating}/5</span>
+            &#9733; <span class="rating-num" style="color:#000; font-weight:600;">${item.rating}/5</span>
           </div>
           <div class="product-price">
             $${item.price}
@@ -329,32 +359,21 @@
       `).join("");
     }
 
-    // 7. ĐẶT LẠI TẤT CẢ BỘ LỌC VỀ BAN ĐẦU
-    function resetFilters() {
-      currentCategory = "All";
-      selectedColors = [];
-      selectedSizes = [];
-      priceRangeInput.value = 250;
-      currentPriceDisplay.textContent = "$250";
-
-      document.querySelectorAll(".category-link-item").forEach(el => el.classList.remove("active"));
-      document.querySelector(".category-link-item")?.classList.add("active");
-
-      document.querySelectorAll(".color-dot").forEach(el => {
-        el.classList.remove("active");
-        el.innerHTML = "";
-      });
-
-      document.querySelectorAll(".chip").forEach(el => el.classList.remove("active"));
-
-      applyFilters();
+    function promptSearch() {
+      const q = prompt("Nhập từ khóa tìm kiếm sản phẩm:");
+      if (q !== null) {
+        document.getElementById("searchInput").value = q;
+        applyFilters();
+      }
     }
 
-    // Tìm kiếm real-time khi gõ trên thanh Navbar
-    document.getElementById("searchInput")?.addEventListener("input", applyFilters);
-
-    // Khởi tạo hiển thị lần đầu
     document.addEventListener("DOMContentLoaded", () => {
+      // Khởi tạo màu Blue có dấu tích sẵn như Figma
+      const blueDot = document.querySelector('.color-dot[data-color="blue"]');
+      if (blueDot) {
+        blueDot.classList.add("active");
+        blueDot.innerHTML = "&#10003;";
+      }
       applyFilters();
     });
   </script>

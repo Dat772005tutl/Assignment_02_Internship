@@ -1223,50 +1223,262 @@ footer {
 }
 
 /* =======================================================
-   16. RESPONSIVE MOBILE (DÀNH CHO TOÀN BỘ WEBSITE)
+   RESPONSIVE MOBILE CHUẨN 100% THEO THIẾT KẾ FIGMA
    ======================================================= */
 @media (max-width: 768px) {
-  .nav-links, .nav-search { display: none; }
-  .mobile-menu-btn { display: block; }
-  .hero-content { grid-template-columns: 1fr; min-height: auto; text-align: left; }
-  .hero-title { font-size: 36px; }
-  .hero-stats { flex-wrap: wrap; gap: 20px; justify-content: space-between; }
-  .stat-divider { display: none; }
-  .hero-right { margin-top: 20px; }
-  .star-big { width: 60px; height: 60px; top: 20px; right: 10px; }
-  .star-small { width: 36px; height: 36px; left: 10px; }
-  .brands-wrap { justify-content: center; gap: 24px; }
-  .section-title { font-size: 32px; margin: 40px 0 28px 0; }
-  .product-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 12px; }
-  .dress-style-box { padding: 30px 20px; border-radius: 24px; }
-  .dress-grid, .dress-grid.reverse { grid-template-columns: 1fr !important; gap: 16px; }
-  .dress-card { height: 180px; padding: 20px; font-size: 22px; }
-  .customer-section-header h2 { font-size: 30px; }
-  .reviews-grid { grid-template-columns: 1fr !important; }
-  .newsletter-wrapper { margin-bottom: -110px; }
-  .newsletter-box { flex-direction: column; padding: 30px 20px; gap: 24px; }
-  .newsletter-box h2 { font-size: 26px; }
-  .newsletter-form { width: 100%; }
-  footer { padding-top: 140px; }
-  .footer-top { grid-template-columns: 1fr 1fr; gap: 28px; }
-  .footer-about { grid-column: span 2; }
-  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
-  
-  /* Product detail mobile */
-  .product-detail-layout { grid-template-columns: 1fr; gap: 24px; }
-  .gallery-wrap { flex-direction: column-reverse; }
-  .thumbnail-list { flex-direction: row; width: 100%; justify-content: center; }
-  .thumb-img { width: 90px; height: 90px; border-radius: 14px; }
-  .main-img-box { height: 340px; }
-  .product-title { font-size: 28px; }
-  .product-reviews-grid { grid-template-columns: 1fr !important; }
-  
-  /* Category mobile */
-  .category-layout { grid-template-columns: 1fr; }
-  .filter-sidebar { display: none; }
-  
-  /* Cart mobile */
-  .cart-layout { grid-template-columns: 1fr; }
+  .container {
+    padding: 0 16px;
+  }
+
+  /* 1. Header & Navbar Mobile */
+  .navbar {
+    padding: 16px 0;
+    gap: 12px;
+  }
+  .nav-left-mobile {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .mobile-menu-btn {
+    display: block;
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .nav-logo {
+    font-size: 26px;
+    letter-spacing: -1px;
+  }
+  .nav-links, .nav-search-desktop {
+    display: none !important;
+  }
+  .nav-icons {
+    gap: 14px;
+  }
+  .nav-icons svg {
+    width: 20px;
+    height: 20px;
+  }
+  .mobile-search-trigger {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  /* 2. Breadcrumb Mobile */
+  .breadcrumb {
+    padding: 14px 0 12px 0;
+    font-size: 13px;
+  }
+
+  /* 3. Tiêu đề Category & Nút Filter tròn chuẩn Figma */
+  .category-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .category-header-row h2 {
+    font-size: 24px;
+    font-weight: 800;
+  }
+  .category-meta-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .category-meta-wrap .meta-text {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .btn-filter-toggle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #F0F0F0;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-filter-toggle:hover {
+    background: #e4e4e4;
+  }
+
+  /* 4. Bộ lọc trượt từ dưới lên (Slide-up Drawer / Bottom Sheet) */
+  .filter-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99999;
+    display: none;
+    align-items: flex-end;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    backdrop-filter: blur(2px);
+  }
+  .filter-sidebar.open {
+    display: flex;
+  }
+  .filter-drawer-card {
+    background: #ffffff;
+    width: 100%;
+    max-height: 88vh;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    padding: 24px 20px 32px 20px;
+    overflow-y: auto;
+    animation: drawerSlideUp 0.3s ease-out;
+  }
+  @keyframes drawerSlideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+  .filter-drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 16px;
+  }
+  .filter-drawer-header h3 {
+    font-size: 22px;
+    font-weight: 800;
+  }
+  .filter-drawer-close {
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: var(--text-muted);
+  }
+
+  /* 5. Lưới sản phẩm Mobile: 2 Cột chuẩn Figma */
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 14px 12px !important;
+  }
+  .product-card {
+    display: flex;
+    flex-direction: column;
+  }
+  .product-img {
+    border-radius: 16px;
+    aspect-ratio: 1 / 1.05;
+    margin-bottom: 10px;
+  }
+  .product-name {
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Tự động cắt dấu ... nếu tên dài */
+    margin-bottom: 4px;
+  }
+  .product-rating {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  .product-price {
+    font-size: 16px;
+    font-weight: 800;
+    gap: 6px;
+  }
+  .price-old {
+    font-size: 13px;
+  }
+  .discount-badge {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 14px;
+  }
+
+  /* 6. Phân trang Mobile chuẩn Figma */
+  .pagination {
+    margin-top: 30px;
+    padding-top: 18px;
+    font-size: 13px;
+  }
+  .pagination-btn {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+
+  /* 7. Floating Newsletter Mobile */
+  .newsletter-wrapper {
+    margin-top: 40px;
+    margin-bottom: -110px;
+  }
+  .newsletter-box {
+    flex-direction: column;
+    padding: 28px 20px;
+    border-radius: 16px;
+    gap: 22px;
+  }
+  .newsletter-box h2 {
+    font-size: 26px;
+    line-height: 1.15;
+    text-align: left;
+    width: 100%;
+  }
+  .newsletter-form {
+    width: 100%;
+    gap: 12px;
+  }
+  .newsletter-input-group {
+    padding: 12px 16px;
+  }
+  .newsletter-btn {
+    padding: 12px;
+  }
+
+  /* 8. Footer Mobile 2 Cột chuẩn Figma */
+  footer {
+    padding-top: 145px;
+    padding-bottom: 30px;
+  }
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 20px;
+    padding-bottom: 36px;
+  }
+  .footer-about {
+    grid-column: span 2;
+  }
+  .footer-about p {
+    max-width: 100%;
+    font-size: 13.5px;
+    margin: 14px 0 20px 0;
+  }
+  .social-icons {
+    gap: 12px;
+  }
+  .footer-col h4 {
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+  .footer-col ul {
+    gap: 12px;
+    font-size: 13.5px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+    padding-top: 20px;
+  }
+  .payment-badges {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }
 /* =======================================================
    NÂNG CẤP REVIEW MODAL & BỘ LỌC ĐÁNH GIÁ (PRODUCT DETAIL)
