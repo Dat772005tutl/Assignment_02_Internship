@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SHOP.CO | Your Cart</title>
+  <title>SHOP.CO | ONE LIFE GRAPHIC T-SHIRT</title>
   <link rel="stylesheet" href="../css/global.css" />
-  <link rel="stylesheet" href="../css/cart.css" />
+  <link rel="stylesheet" href="../css/product.css" />
 </head>
 <body>
 
@@ -50,29 +50,126 @@
   </header>
 
   <main class="container">
-    <div class="breadcrumb"><a href="../index.html">Home</a> &gt; <span>Cart</span></div>
-    <h1 style="font-size:36px; font-weight:900; margin-bottom: 24px;">YOUR CART</h1>
-
-    <div class="cart-layout">
-      <!-- Container chứa các thẻ sản phẩm động -->
-      <section class="cart-items-container" id="cartItemsContainer"></section>
-
-      <!-- Order Summary -->
-      <aside class="order-summary-box">
-        <h2 class="order-summary-title">Order Summary</h2>
-        <div class="summary-row"><span>Subtotal</span><span class="summary-val" id="summary-subtotal">$0</span></div>
-        <div class="summary-row"><span>Discount (-20%)</span><span class="summary-discount" id="summary-discount">-$0</span></div>
-        <div class="summary-row"><span>Delivery Fee</span><span class="summary-val" id="summary-delivery">$0</span></div>
-        <div class="summary-row total"><span>Total</span><span id="summary-total">$0</span></div>
-
-        <div class="promo-box">
-          <div class="promo-input-wrap"><span>&#127991;</span><input type="text" placeholder="Add promo code" /></div>
-          <button class="btn-primary">Apply</button>
-        </div>
-        <button class="btn-primary checkout-btn" id="checkoutBtn">Go to Checkout &rarr;</button>
-      </aside>
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a> &gt; <a href="category.html">Shop</a> &gt; <a href="category.html">Men</a> &gt; <span>T-shirts</span>
     </div>
+
+    <div class="product-detail-layout">
+      <div class="gallery-wrap">
+        <div class="thumbnail-list">
+          <div class="thumb-img active" onclick="switchMainImage(this, 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=700')">
+            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300" alt="Thumb 1" />
+          </div>
+          <div class="thumb-img" onclick="switchMainImage(this, 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=700')">
+            <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=300" alt="Thumb 2" />
+          </div>
+          <div class="thumb-img" onclick="switchMainImage(this, 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=700')">
+            <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=300" alt="Thumb 3" />
+          </div>
+        </div>
+        <div class="main-img-box">
+          <img id="mainProductImg" src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=700" alt="Product" />
+        </div>
+      </div>
+
+      <div>
+        <h1 class="product-title" id="productTitle">ONE LIFE GRAPHIC T-SHIRT</h1>
+        <div class="product-detail-rating">
+          <span>&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+          <span class="rating-num">4.5/5</span>
+        </div>
+        <div class="product-detail-price">
+          <span>$260</span>
+          <span class="old-price">$300</span>
+          <span class="badge-sale">-40%</span>
+        </div>
+        <p class="product-desc">
+          This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.
+        </p>
+
+        <hr class="product-divider" />
+
+        <div>
+          <p class="option-label">Select Colors</p>
+          <div class="color-options-row">
+            <div class="color-circle active" data-color="Olive Green" style="background:#4F4631;" onclick="selectColor(this)">&#10003;</div>
+            <div class="color-circle" data-color="Deep Teal" style="background:#314F4A;" onclick="selectColor(this)"></div>
+            <div class="color-circle" data-color="Dark Navy" style="background:#31344F;" onclick="selectColor(this)"></div>
+          </div>
+        </div>
+
+        <hr class="product-divider" />
+
+        <div>
+          <p class="option-label">Choose Size</p>
+          <div class="size-chips-row">
+            <button type="button" class="size-chip" data-size="Small" onclick="selectSize(this)">Small</button>
+            <button type="button" class="size-chip" data-size="Medium" onclick="selectSize(this)">Medium</button>
+            <button type="button" class="size-chip active" data-size="Large" onclick="selectSize(this)">Large</button>
+            <button type="button" class="size-chip" data-size="X-Large" onclick="selectSize(this)">X-Large</button>
+          </div>
+        </div>
+
+        <hr class="product-divider" />
+
+        <div class="actions-row">
+          <div class="qty-selector">
+            <span class="qty-btn" id="qtyMinus">&minus;</span>
+            <span id="qtyVal">1</span>
+            <span class="qty-btn" id="qtyPlus">+</span>
+          </div>
+          <button type="button" class="btn-add-cart" id="btnAddToCart">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs-header">
+      <div class="tab-item">Product Details</div>
+      <div class="tab-item active">Rating &amp; Reviews</div>
+      <div class="tab-item">FAQs</div>
+    </div>
+
+    <!-- Reviews Section -->
+    <section>
+      <div class="reviews-control-bar">
+        <h3>All Reviews <span>(451)</span></h3>
+        <div class="reviews-actions">
+          <button class="btn-write-review" id="btnOpenReviewModal">Write a Review</button>
+        </div>
+      </div>
+
+      <div class="product-reviews-grid" id="reviewsGridContainer"></div>
+
+      <div class="load-more-wrap">
+        <button class="btn-outline" id="btnLoadMoreReviews">Load More Reviews</button>
+      </div>
+    </section>
   </main>
+
+  <!-- Modal Review -->
+  <div class="modal-backdrop" id="reviewModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Write a Review</h3>
+        <button class="modal-close" id="btnCloseReviewModal">&times;</button>
+      </div>
+      <form id="formWriteReview">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="reviewerName" placeholder="e.g. Alex M." required />
+        </div>
+        <div class="form-group">
+          <label>Review</label>
+          <textarea id="reviewerText" rows="4" placeholder="Your experience..." required></textarea>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn-outline" id="btnCancelReview" style="padding:10px 20px;">Cancel</button>
+          <button type="submit" class="btn-primary" style="padding:10px 24px;">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <!-- Newsletter -->
   <div class="container newsletter-wrapper">
@@ -131,5 +228,6 @@
   </footer>
 
   <script src="../js/cart.js"></script>
+  <script src="../js/product.js"></script>
 </body>
 </html>
