@@ -53,13 +53,20 @@ function renderCartView() {
       <div class="cart-item-details">
         <div class="cart-item-top">
           <span class="cart-item-title">${prod.name}</span>
-          <button class="cart-item-remove" onclick="removeCartItemAt(${idx})">&#128465;</button>
+          <button type="button" class="cart-item-remove" onclick="removeCartItemAt(${idx})" title="Delete item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF3333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              <line x1="10" y1="11" x2="10" y2="17"></line>
+              <line x1="14" y1="11" x2="14" y2="17"></line>
+            </svg>
+          </button>
         </div>
         <div class="cart-item-specs">Size: <span>${prod.size}</span></div>
         <div class="cart-item-specs">Color: <span>${prod.color}</span></div>
         <div class="cart-item-bottom">
           <span class="cart-item-price">$${prod.price}</span>
-          <div class="qty-selector" style="width:110px; padding:6px 14px;">
+          <div class="qty-selector">
             <span class="qty-btn" onclick="modifyQty(${idx}, -1)">&minus;</span>
             <span>${prod.quantity}</span>
             <span class="qty-btn" onclick="modifyQty(${idx}, 1)">+</span>
