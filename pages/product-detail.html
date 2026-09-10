@@ -86,7 +86,7 @@
 
         <hr class="product-divider" />
 
-        <!-- Select Colors có gắn data-color -->
+        <!-- Select Colors -->
         <div>
           <p class="option-label">Select Colors</p>
           <div class="color-options-row">
@@ -98,20 +98,20 @@
 
         <hr class="product-divider" />
 
-        <!-- Choose Size có gắn data-size -->
+        <!-- Choose Size -->
         <div>
           <p class="option-label">Choose Size</p>
           <div class="size-chips-row">
             <button type="button" class="size-chip" data-size="Small" onclick="selectSize(this)">Small</button>
             <button type="button" class="size-chip" data-size="Medium" onclick="selectSize(this)">Medium</button>
-            <button type="button" class="size-chip active" data-size="Large" onclick="selectSize(this)">Large</button>
-            <button type="button" class="size-chip" data-size="X-Large" onclick="selectSize(this)">X-Large</button>
+            <button type="button" class="size-chip" data-size="Large" onclick="selectSize(this)">Large</button>
+            <button type="button" class="size-chip active" data-size="X-Large" onclick="selectSize(this)">X-Large</button>
           </div>
         </div>
 
         <hr class="product-divider" />
 
-        <!-- Tăng giảm số lượng và nút bấm Add to Cart -->
+        <!-- Quantity & Add to Cart -->
         <div class="actions-row">
           <div class="qty-selector">
             <span class="qty-btn" id="qtyMinus">&minus;</span>
@@ -130,70 +130,46 @@
       <div class="tab-item">FAQs</div>
     </div>
 
-    <!-- All Reviews (6 thẻ chuẩn) -->
-    <section>
+    <!-- REVIEWS SECTION -->
+    <section id="reviewsSection">
       <div class="reviews-control-bar">
-        <h3>All Reviews <span>(451)</span></h3>
+        <h3 id="allReviewsTitle">All Reviews <span>(451)</span></h3>
+        
         <div class="reviews-actions">
-          <button class="btn-filter-icon" title="Filter"><svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/></svg></button>
-          <button class="btn-sort-dropdown">Latest <svg width="10" height="10" viewBox="0 0 24 24"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg></button>
-          <button class="btn-write-review">Write a Review</button>
+          <!-- Nút bấm mở Menu lọc sao -->
+          <button class="btn-filter-icon" id="btnFilterReviews" title="Filter by Stars">
+            <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/></svg>
+          </button>
+          
+          <!-- Popover lọc sao -->
+          <div class="filter-star-dropdown" id="filterStarDropdown">
+            <div class="filter-star-item active" onclick="filterByStars('all', this)">All Stars <span>✓</span></div>
+            <div class="filter-star-item" onclick="filterByStars(5, this)">5 Stars <span>★★★★★</span></div>
+            <div class="filter-star-item" onclick="filterByStars(4, this)">4 Stars <span>★★★★☆</span></div>
+            <div class="filter-star-item" onclick="filterByStars(3, this)">3 Stars <span>★★★☆☆</span></div>
+          </div>
+
+          <!-- Dropdown sắp xếp hoạt động thật -->
+          <select class="reviews-sort-select" id="sortReviewsSelect" onchange="sortReviews(this.value)">
+            <option value="latest">Latest</option>
+            <option value="oldest">Oldest</option>
+            <option value="highest">Highest Rating</option>
+            <option value="lowest">Lowest Rating</option>
+          </select>
+
+          <!-- Nút Write a Review mở Modal -->
+          <button class="btn-write-review" id="btnOpenReviewModal">Write a Review</button>
         </div>
       </div>
 
-      <div class="product-reviews-grid">
-        <div class="review-card-item">
-          <div>
-            <div class="review-card-header"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><button class="btn-more-options">&#8943;</button></div>
-            <div class="review-user-name">Samantha D. <span class="verified-icon">&#10003;</span></div>
-            <p class="review-body-text">"I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. It's become my favorite go-to shirt."</p>
-          </div>
-          <div class="review-posted-date">Posted on August 14, 2023</div>
-        </div>
-        <div class="review-card-item">
-          <div>
-            <div class="review-card-header"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div><button class="btn-more-options">&#8943;</button></div>
-            <div class="review-user-name">Alex M. <span class="verified-icon">&#10003;</span></div>
-            <p class="review-body-text">"The t-shirt exceeded my expectations! The colors are vibrant and the print quality is top-notch. Being a UI/UX designer myself, I'm quite picky about aesthetics, and this t-shirt definitely gets a thumbs up from me."</p>
-          </div>
-          <div class="review-posted-date">Posted on August 15, 2023</div>
-        </div>
-        <div class="review-card-item">
-          <div>
-            <div class="review-card-header"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div><button class="btn-more-options">&#8943;</button></div>
-            <div class="review-user-name">Ethan R. <span class="verified-icon">&#10003;</span></div>
-            <p class="review-body-text">"This t-shirt is a must-have for anyone who appreciates good design. The minimalistic yet stylish pattern caught my eye, and the fit is perfect. I can see the designer's touch in every aspect of this shirt!"</p>
-          </div>
-          <div class="review-posted-date">Posted on August 16, 2023</div>
-        </div>
-        <div class="review-card-item">
-          <div>
-            <div class="review-card-header"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div><button class="btn-more-options">&#8943;</button></div>
-            <div class="review-user-name">Olivia P. <span class="verified-icon">&#10003;</span></div>
-            <p class="review-body-text">"As a UI/UX enthusiast, I value simplicity and functionality. This t-shirt not only represents those principles but also feels great to wear. It's evident that the designer poured their creativity into making this t-shirt stand out."</p>
-          </div>
-          <div class="review-posted-date">Posted on August 17, 2023</div>
-        </div>
-        <div class="review-card-item">
-          <div>
-            <div class="review-card-header"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div><button class="btn-more-options">&#8943;</button></div>
-            <div class="review-user-name">Liam K. <span class="verified-icon">&#10003;</span></div>
-            <p class="review-body-text">"This t-shirt is a fusion of comfort and creativity. The fabric is soft, and the design speaks volumes about the designer's skill. It's like wearing a piece of art that reflects my passion for both design and fashion."</p>
-          </div>
-          <div class="review-posted-date">Posted on August 18, 2023</div>
-        </div>
-        <div class="review-card-item">
-          <div>
-            <div class="review-card-header"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><button class="btn-more-options">&#8943;</button></div>
-            <div class="review-user-name">Ava H. <span class="verified-icon">&#10003;</span></div>
-            <p class="review-body-text">"I'm not just wearing a t-shirt; I'm wearing a piece of design philosophy. The intricate details and thoughtful layout of the design make this shirt a conversation starter."</p>
-          </div>
-          <div class="review-posted-date">Posted on August 19, 2023</div>
-        </div>
+      <!-- Lưới chứa các thẻ Review (Được render động) -->
+      <div class="product-reviews-grid" id="reviewsGridContainer">
+        <!-- Render bằng Javascript -->
       </div>
 
+      <!-- Nút LOAD MORE REVIEWS -->
       <div class="load-more-wrap">
-        <button class="btn-outline">Load More Reviews</button>
+        <button class="btn-outline" id="btnLoadMoreReviews">Load More Reviews</button>
       </div>
     </section>
 
@@ -287,10 +263,243 @@
     </div>
   </footer>
 
-  <!-- SCRIPT LOGIC CHI TIẾT -->
+  <!-- =======================================================
+       POPUP / MODAL VIẾT ĐÁNH GIÁ (WRITE A REVIEW)
+       ======================================================= -->
+  <div class="modal-backdrop" id="reviewModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Write a Review</h3>
+        <button class="modal-close" id="btnCloseReviewModal">&times;</button>
+      </div>
+
+      <form id="formWriteReview">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="reviewerName" placeholder="e.g. Alex M." required />
+        </div>
+
+        <div class="form-group">
+          <label>Rating (Chọn số sao)</label>
+          <div class="star-rating-picker" id="starPicker">
+            <span data-star="1" class="active">★</span>
+            <span data-star="2" class="active">★</span>
+            <span data-star="3" class="active">★</span>
+            <span data-star="4" class="active">★</span>
+            <span data-star="5" class="active">★</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Review Description</label>
+          <textarea id="reviewerText" rows="4" placeholder="Share your experience about this garment..." required></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-outline" id="btnCancelReview" style="padding:10px 24px;">Cancel</button>
+          <button type="submit" class="btn-primary" style="padding:10px 32px;">Submit Review</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =======================================================
+       JAVASCRIPT XỬ LÝ TOÀN BỘ LOGIC: 
+       VIẾT ĐÁNH GIÁ -> ẤN LOAD MORE THÌ HIỆN -> BỘ LỌC SAO & SORT
+       ======================================================= -->
   <script>
+    // 1. DỮ LIỆU ĐÁNH GIÁ BAN ĐẦU (4 Review hiển thị lúc đầu)
+    let visibleReviews = [
+      { id: 1, name: "Samantha D.", rating: 5, date: "August 14, 2023", text: "I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. It's become my favorite go-to shirt." },
+      { id: 2, name: "Alex M.", rating: 4, date: "August 15, 2023", text: "The t-shirt exceeded my expectations! The colors are vibrant and the print quality is top-notch. Being a UI/UX designer myself, I'm quite picky about aesthetics, and this t-shirt definitely gets a thumbs up from me." },
+      { id: 3, name: "Ethan R.", rating: 4, date: "August 16, 2023", text: "This t-shirt is a must-have for anyone who appreciates good design. The minimalistic yet stylish pattern caught my eye, and the fit is perfect. I can see the designer's touch in every aspect of this shirt!" },
+      { id: 4, name: "Olivia P.", rating: 4, date: "August 17, 2023", text: "As a UI/UX enthusiast, I value simplicity and functionality. This t-shirt not only represents those principles but also feels great to wear. It's evident that the designer poured their creativity into making this t-shirt stand out." }
+    ];
+
+    // 2. DỮ LIỆU CHỜ TẢI (Khi bấm Load More Reviews thì sẽ hiện ra)
+    let pendingMoreReviews = [
+      { id: 5, name: "Liam K.", rating: 4, date: "August 18, 2023", text: "This t-shirt is a fusion of comfort and creativity. The fabric is soft, and the design speaks volumes about the designer's skill. It's like wearing a piece of art that reflects my passion for both design and fashion." },
+      { id: 6, name: "Ava H.", rating: 5, date: "August 19, 2023", text: "I'm not just wearing a t-shirt; I'm wearing a piece of design philosophy. The intricate details and thoughtful layout of the design make this shirt a conversation starter." }
+    ];
+
+    // Danh sách các đánh giá do người dùng vừa gửi (đang chờ bấm Load More)
+    let userSubmittedQueue = [];
+
+    // Bộ lọc sao hiện tại và kiểu sắp xếp
+    let currentStarFilter = "all";
+    let currentSortOrder = "latest";
+    let selectedFormStar = 5;
+
+    // 3. RENDER DANH SÁCH REVIEW RA GIAO DIỆN
+    function renderReviews() {
+      const container = document.getElementById("reviewsGridContainer");
+      if (!container) return;
+
+      // Lọc theo sao
+      let filtered = visibleReviews.filter(item => {
+        if (currentStarFilter === "all") return true;
+        return item.rating === parseInt(currentStarFilter);
+      });
+
+      // Sắp xếp
+      if (currentSortOrder === "latest") {
+        filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+      } else if (currentSortOrder === "oldest") {
+        filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
+      } else if (currentSortOrder === "highest") {
+        filtered.sort((a, b) => b.rating - a.rating);
+      } else if (currentSortOrder === "lowest") {
+        filtered.sort((a, b) => a.rating - b.rating);
+      }
+
+      // Vẽ các thẻ review
+      container.innerHTML = filtered.map(item => `
+        <div class="review-card-item ${item.isUserReview ? 'new-user-review' : ''}">
+          <div>
+            <div class="review-card-header">
+              <div class="stars">
+                ${"&#9733;".repeat(item.rating)}${"&#9734;".repeat(5 - item.rating)}
+              </div>
+              <button class="btn-more-options">&#8943;</button>
+            </div>
+            <div class="review-user-name">
+              ${item.name} <span class="verified-icon">&#10003;</span>
+              ${item.isUserReview ? `<span class="my-review-badge">Your Review</span>` : ''}
+            </div>
+            <p class="review-body-text">"${item.text}"</p>
+          </div>
+          <div class="review-posted-date">Posted on ${item.date}</div>
+        </div>
+      `).join("");
+
+      // Cập nhật số lượng hiển thị trên tiêu đề
+      const totalCount = 451 + userSubmittedQueue.length + (visibleReviews.length - 4);
+      document.getElementById("allReviewsTitle").innerHTML = `All Reviews <span>(${totalCount})</span>`;
+    }
+
+    // 4. BẬT/TẮT MODAL WRITE A REVIEW
+    const reviewModal = document.getElementById("reviewModal");
+    const btnOpenReviewModal = document.getElementById("btnOpenReviewModal");
+    const btnCloseReviewModal = document.getElementById("btnCloseReviewModal");
+    const btnCancelReview = document.getElementById("btnCancelReview");
+
+    btnOpenReviewModal.addEventListener("click", () => {
+      reviewModal.classList.add("show");
+    });
+
+    function closeModal() {
+      reviewModal.classList.remove("show");
+      document.getElementById("formWriteReview").reset();
+      updateStarPicker(5);
+    }
+    btnCloseReviewModal.addEventListener("click", closeModal);
+    btnCancelReview.addEventListener("click", closeModal);
+
+    // 5. CHỌN SỐ SAO TRONG MODAL
+    const starSpans = document.querySelectorAll("#starPicker span");
+    function updateStarPicker(rating) {
+      selectedFormStar = rating;
+      starSpans.forEach(span => {
+        const s = parseInt(span.getAttribute("data-star"));
+        if (s <= rating) span.classList.add("active");
+        else span.classList.remove("active");
+      });
+    }
+    starSpans.forEach(span => {
+      span.addEventListener("click", () => {
+        updateStarPicker(parseInt(span.getAttribute("data-star")));
+      });
+    });
+
+    // 6. KHI SUBMIT ĐÁNH GIÁ (Lưu vào hàng đợi)
+    document.getElementById("formWriteReview").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = document.getElementById("reviewerName").value.trim();
+      const text = document.getElementById("reviewerText").value.trim();
+      
+      const newReview = {
+        id: Date.now(),
+        name: name,
+        rating: selectedFormStar,
+        date: "Today, " + new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+        text: text,
+        isUserReview: true // Đánh dấu là review của người dùng
+      };
+
+      // Đưa vào hàng chờ xuất hiện khi bấm Load More
+      userSubmittedQueue.unshift(newReview);
+
+      closeModal();
+
+      // Thông báo đúng như yêu cầu của bạn!
+      alert("🎉 Đánh giá của bạn đã được gửi thành công!\n👉 Hãy ấn nút 'Load More Reviews' ở bên dưới để hiển thị đánh giá của bạn nhé!");
+      
+      // Đổi chữ nút Load More để nhắc nhở người dùng
+      const btnLoadMore = document.getElementById("btnLoadMoreReviews");
+      btnLoadMore.textContent = `Load More Reviews (${userSubmittedQueue.length} New Review Ready)`;
+      btnLoadMore.style.borderColor = "#000000";
+      btnLoadMore.style.background = "#F0EEED";
+    });
+
+    // 7. ĐÚNG YÊU CẦU: ẤN NÚT "LOAD MORE REVIEWS" THÌ HIỆN ĐÁNH GIÁ CỦA BẠN!
+    document.getElementById("btnLoadMoreReviews").addEventListener("click", () => {
+      let hasNewContent = false;
+
+      // Nếu có đánh giá người dùng vừa viết -> Đưa vào danh sách hiển thị ngay trên đầu
+      if (userSubmittedQueue.length > 0) {
+        visibleReviews = [...userSubmittedQueue, ...visibleReviews];
+        userSubmittedQueue = []; // Làm rỗng hàng chờ
+        hasNewContent = true;
+      }
+
+      // Tải thêm các review mẫu có sẵn
+      if (pendingMoreReviews.length > 0) {
+        visibleReviews = [...visibleReviews, ...pendingMoreReviews];
+        pendingMoreReviews = [];
+        hasNewContent = true;
+      }
+
+      const btnLoadMore = document.getElementById("btnLoadMoreReviews");
+
+      if (hasNewContent) {
+        renderReviews();
+        btnLoadMore.textContent = "All Reviews Loaded";
+        btnLoadMore.style.opacity = "0.7";
+        btnLoadMore.style.cursor = "default";
+      } else {
+        alert("Bạn đã xem hết tất cả đánh giá!");
+      }
+    });
+
+    // 8. BỘ LỌC THEO SỐ SAO (FILTER ICON)
+    const btnFilterReviews = document.getElementById("btnFilterReviews");
+    const filterStarDropdown = document.getElementById("filterStarDropdown");
+
+    btnFilterReviews.addEventListener("click", (e) => {
+      e.stopPropagation();
+      filterStarDropdown.classList.toggle("show");
+    });
+
+    window.addEventListener("click", () => {
+      filterStarDropdown.classList.remove("show");
+    });
+
+    function filterByStars(stars, element) {
+      document.querySelectorAll(".filter-star-item").forEach(el => el.classList.remove("active"));
+      element.classList.add("active");
+      currentStarFilter = stars;
+      renderReviews();
+    }
+
+    // 9. SẮP XẾP ĐÁNH GIÁ (SORT BY)
+    function sortReviews(value) {
+      currentSortOrder = value;
+      renderReviews();
+    }
+
+    // 10. CHỨC NĂNG CHỌN MÀU, CHỌN SIZE, GALLERY VÀ TĂNG GIẢM SỐ LƯỢNG
     let selectedColor = "Olive Green";
-    let selectedSize = "Large";
+    let selectedSize = "X-Large";
 
     function switchMainImage(element, src) {
       document.querySelectorAll('.thumb-img').forEach(el => el.classList.remove('active'));
@@ -315,11 +524,14 @@
       selectedSize = element.getAttribute('data-size') || "Large";
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener("DOMContentLoaded", () => {
+      // Khởi tạo hiển thị 4 review đầu tiên
+      renderReviews();
+
+      // Bộ đếm số lượng
       const minus = document.getElementById('qtyMinus');
       const plus = document.getElementById('qtyPlus');
       const val = document.getElementById('qtyVal');
-      
       if (minus && plus && val) {
         minus.addEventListener('click', () => {
           let c = parseInt(val.textContent);
@@ -331,7 +543,7 @@
         });
       }
 
-      // Khi bấm nút Add to Cart -> Đưa thông số thực tế vào LocalStorage
+      // Thêm vào giỏ hàng
       const btnAdd = document.getElementById('btnAddToCart');
       if (btnAdd) {
         btnAdd.addEventListener('click', () => {
@@ -346,9 +558,11 @@
             quantity: qty
           };
 
-          addToCart(productToAdd);
-          alert(`Đã thêm ${qty} sản phẩm "${productToAdd.name}" (Size: ${selectedSize}, Màu: ${selectedColor}) vào giỏ hàng!`);
-          window.location.href = "cart.html"; // Chuyển sang giỏ hàng xem kết quả
+          if (typeof addToCart === "function") {
+            addToCart(productToAdd);
+            alert(`Đã thêm ${qty} sản phẩm "${productToAdd.name}" vào giỏ hàng!`);
+            window.location.href = "cart.html";
+          }
         });
       }
     });

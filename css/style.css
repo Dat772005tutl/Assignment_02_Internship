@@ -1268,3 +1268,172 @@ footer {
   /* Cart mobile */
   .cart-layout { grid-template-columns: 1fr; }
 }
+/* =======================================================
+   NÂNG CẤP REVIEW MODAL & BỘ LỌC ĐÁNH GIÁ (PRODUCT DETAIL)
+   ======================================================= */
+/* 1. Modal Popup viết đánh giá */
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+.modal-backdrop.show {
+  display: flex;
+}
+.modal-box {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 32px 36px;
+  width: 90%;
+  max-width: 520px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: modalFadeIn 0.25s ease-out;
+}
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(-20px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.modal-header h3 {
+  font-size: 24px;
+  font-weight: 800;
+}
+.modal-close {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 1;
+}
+.form-group {
+  margin-bottom: 18px;
+}
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  outline: none;
+  font-size: 14px;
+  background: #F9F9F9;
+  font-family: inherit;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #000000;
+  background: #ffffff;
+}
+
+/* Chọn số sao trực quan trong Modal */
+.star-rating-picker {
+  display: flex;
+  gap: 6px;
+  font-size: 30px;
+  cursor: pointer;
+  color: #E0E0E0;
+}
+.star-rating-picker span {
+  transition: color 0.15s, transform 0.1s;
+}
+.star-rating-picker span:hover {
+  transform: scale(1.15);
+}
+.star-rating-picker span.active {
+  color: #FFC633;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+/* 2. Menu Popover Bộ lọc Sao */
+.reviews-actions {
+  position: relative;
+}
+.filter-star-dropdown {
+  display: none;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  border-radius: 16px;
+  padding: 10px;
+  width: 170px;
+  z-index: 100;
+}
+.filter-star-dropdown.show {
+  display: block;
+}
+.filter-star-item {
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.15s;
+}
+.filter-star-item:hover, .filter-star-item.active {
+  background: #F0EEED;
+  color: #000000;
+  font-weight: 700;
+}
+
+/* 3. Style Select sắp xếp (Sort Dropdown) chuẩn Figma */
+.reviews-sort-select {
+  background: #F0F0F0;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 60px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Huy hiệu đánh dấu Review mới của bạn */
+.my-review-badge {
+  background: #000000;
+  color: #ffffff;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-weight: 600;
+  margin-left: 8px;
+}
+.review-card-item.new-user-review {
+  border: 2px solid #000000;
+  animation: highlightCard 1.5s ease-out;
+}
+@keyframes highlightCard {
+  0% { background: #f4fdf6; }
+  100% { background: #ffffff; }
+}
