@@ -1,38 +1,118 @@
-const DEFAULT_CART = [
-  { id: "c1", name: "Gradient Graphic T-shirt", price: 145, image: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=150", size: "Large", color: "White", quantity: 1 },
-  { id: "c2", name: "Checkered Shirt", price: 180, image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=150", size: "Medium", color: "Red", quantity: 1 },
-  { id: "c3", name: "Skinny Fit Jeans", price: 240, image: "https://images.unsplash.com/photo-1542272604-787c3835535d?w=150", size: "Large", color: "Blue", quantity: 1 }
-];
 
+// Lấy dữ liệu giỏ hàng từ localStorage
 function getCartData() {
-  const raw = localStorage.getItem("shop_co_cart");
-  if (!raw) {
-    localStorage.setItem("shop_co_cart", JSON.stringify(DEFAULT_CART));
-    return DEFAULT_CART;
+  try {
+    return JSON.parse(localStorage.getItem('shop_co_cart') || '[]');
+  } catch (e) {
+    return [];
   }
-  return JSON.parse(raw);
 }
 
+// Lưu dữ liệu vào localStorage
 function saveCartData(cart) {
-  localStorage.setItem("shop_co_cart", JSON.stringify(cart));
+  localStorage.setItem('shop_co_cart', JSON.stringify(cart));
 }
 
+// HÀM ĐỒNG BỘ BADGE SỐ LƯỢNG TRÊN ICON HEADER
+window.updateGlobalCartBadge = function() {
+  const cart = getCartData();
+  // Tính tổng số lượng tất cả sản phẩm
+  const totalCount = cart.reduce((sum, item) => sum + (parseInt(item.quantity) || 1), 0);
+
+  // Tìm tất cả các badge giỏ hàng trên trang (cả mobile lẫn desktop)
+  const badges = document.querySelectorAll('.cart-badge, #navbarCartBadge');
+  badges.forEach(badge => {
+    if (totalCount > 0) {
+      badge.textContent = totalCount;
+      badge.setAttribute('data-count', totalCount);
+      badge.style.display = 'flex'; // Hiện badge khi có sản phẩm
+
+      // Hiệu ứng nảy nhẹ khi nhảy số
+      badge.classList.remove('badge-pop');
+      void badge.offsetWidth; // Trigger reflow
+      badge.classList.add('badge-pop');
+    } else {
+      // Khi = 0 hoặc xóa hết: Ẩn hoàn toàn, mất luôn số
+      badge.textContent = '';
+      badge.setAttribute('data-count', '0');
+      badge.style.display = 'none';
+    }
+  });
+
+  // Cập nhật số lượng trong Mobile Side Menu Drawer (nếu có)
+  document.querySelectorAll('.global-drawer-cart-count, #drawerCartCount').forEach(el => {
+    el.textContent = `(${totalCount})`;
+  });
+};
+
+// Tạo alias để tương thích nếu các file khác gọi tên cũ
+window.updateHeaderCartBadge = window.updateGlobalCartBadge;
+
+// HÀM THÊM SẢN PHẨM VÀO GIỎ HÀNG (GỌI TỪ TRANG PRODUCT)
 function addProductToCart(item) {
   const cart = getCartData();
   const existing = cart.find(x => x.name === item.name && x.size === item.size && x.color === item.color);
+  
   if (existing) {
     existing.quantity += item.quantity;
   } else {
     cart.unshift(item);
   }
+  
+  saveCartData(cart);
+  
+  // 👉 Nhảy số ngay lập tức trên icon
+  window.updateGlobalCartBadge();
+}
+
+// HÀM XÓA SẢN PHẨM KHỎI GIỎ HÀNG
+function removeCartItemAt(idx) {
+  const cart = getCartData();
+  cart.splice(idx, 1);
   saveCartData(cart);
 
-  // Kích hoạt cập nhật ngay Badge trên Navbar
-  if (typeof updateHeaderCartBadge === "function") {
-    updateHeaderCartBadge();
+  // Render lại giao diện giỏ hàng
+  renderCartView();
+
+  // 👉 Cập nhật lại số lượng ngay lập tức (Nếu hết sản phẩm thì mất luôn số)
+  window.updateGlobalCartBadge();
+}
+
+// HÀM TĂNG / GIẢM SỐ LƯỢNG TRONG GIỎ HÀNG
+function modifyQty(idx, delta) {
+  const cart = getCartData();
+  if (cart[idx]) {
+    cart[idx].quantity += delta;
+    if (cart[idx].quantity <= 0) {
+      cart.splice(idx, 1);
+    }
+    saveCartData(cart);
+    renderCartView();
+
+    // 👉 Đồng bộ số lượng trên icon
+    window.updateGlobalCartBadge();
   }
 }
 
+// Tính toán tổng tiền Order Summary
+function updateTotals(cart) {
+  const subtotal = cart.reduce((sum, i) => sum + (i.price * i.quantity), 0);
+  const discount = subtotal > 0 ? Math.round(subtotal * 0.2) : 0;
+  const delivery = subtotal > 0 ? 15 : 0;
+  const total = subtotal > 0 ? (subtotal - discount + delivery) : 0;
+
+  const subEl = document.getElementById("summary-subtotal");
+  const disEl = document.getElementById("summary-discount");
+  const delEl = document.getElementById("summary-delivery");
+  const totEl = document.getElementById("summary-total");
+
+  if (subEl) subEl.textContent = `$${subtotal}`;
+  if (disEl) disEl.textContent = `-$${discount}`;
+  if (delEl) delEl.textContent = `$${delivery}`;
+  if (totEl) totEl.textContent = `$${total}`;
+}
+
+// Vẽ danh sách sản phẩm trong trang cart.html
 function renderCartView() {
   const container = document.getElementById("cartItemsContainer");
   if (!container) return;
@@ -40,10 +120,10 @@ function renderCartView() {
   const cart = getCartData();
   if (cart.length === 0) {
     container.innerHTML = `
-      <div style="text-align: center; padding: 40px 10px;">
-        <h3>Your Cart is empty</h3>
-        <p style="color:var(--text-muted); margin: 8px 0 20px;">Explore our catalog to find items you love.</p>
-        <a href="category.html" class="btn-primary" style="padding: 12px 28px;">Shop Now</a>
+      <div style="text-align: center; padding: 48px 16px;">
+        <h3 style="font-size:22px; margin-bottom:8px;">Your Cart is empty</h3>
+        <p style="color:var(--text-muted); margin-bottom: 24px;">Browse our catalog and pick something you love.</p>
+        <a href="category.html" class="btn-primary" style="padding: 12px 32px; border-radius: 60px;">Shop Now</a>
       </div>
     `;
     updateTotals(cart);
@@ -53,12 +133,12 @@ function renderCartView() {
   container.innerHTML = cart.map((prod, idx) => `
     <div class="cart-item">
       <div class="cart-item-img">
-        <img src="${prod.image}" alt="${prod.name}" />
+        <img src="${prod.image}" alt="${prod.name}" onerror="this.src='../images/product-1-main.jpg'" />
       </div>
       <div class="cart-item-details">
         <div class="cart-item-top">
           <span class="cart-item-title">${prod.name}</span>
-          <button type="button" class="cart-item-remove" onclick="removeCartItemAt(${idx})" title="Delete item">
+          <button type="button" class="cart-item-remove" onclick="removeCartItemAt(${idx})" title="Remove item">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF3333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="3 6 5 6 21 6"></polyline>
               <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
@@ -84,56 +164,16 @@ function renderCartView() {
   updateTotals(cart);
 }
 
-function updateTotals(cart) {
-  let subtotal = 0;
-  cart.forEach(x => subtotal += x.price * x.quantity);
-
-  const discount = Math.round(subtotal * 0.2);
-  const delivery = subtotal > 0 ? 15 : 0;
-  const total = subtotal > 0 ? subtotal - discount + delivery : 0;
-
-  const subEl = document.getElementById("summary-subtotal");
-  const disEl = document.getElementById("summary-discount");
-  const delEl = document.getElementById("summary-delivery");
-  const totEl = document.getElementById("summary-total");
-
-  if (subEl) subEl.textContent = `$${subtotal}`;
-  if (disEl) disEl.textContent = `-$${discount}`;
-  if (delEl) delEl.textContent = `$${delivery}`;
-  if (totEl) totEl.textContent = `$${total}`;
-}
-
-window.modifyQty = function(idx, change) {
-  const cart = getCartData();
-  if (cart[idx]) {
-    cart[idx].quantity += change;
-    if (cart[idx].quantity < 1) cart[idx].quantity = 1;
-    saveCartData(cart);
-    renderCartView();
-  }
-};
-
-window.removeCartItemAt = function(idx) {
-  const cart = getCartData();
-  cart.splice(idx, 1);
-  saveCartData(cart);
-  renderCartView();
-};
-
+// Khởi chạy khi tải trang
 document.addEventListener("DOMContentLoaded", () => {
   renderCartView();
+  window.updateGlobalCartBadge();
+});
 
-  const checkoutBtn = document.getElementById("checkoutBtn");
-  if (checkoutBtn) {
-    checkoutBtn.addEventListener("click", () => {
-      const cart = getCartData();
-      if (cart.length === 0) {
-        alert("Your cart is empty!");
-        return;
-      }
-      alert("Order placed successfully! Thank you for shopping with SHOP.CO.");
-      saveCartData([]);
-      renderCartView();
-    });
+// Tự động đồng bộ số lượng nếu người dùng mở nhiều tab cùng lúc
+window.addEventListener('storage', (e) => {
+  if (e.key === 'shop_co_cart') {
+    renderCartView();
+    window.updateGlobalCartBadge();
   }
 });

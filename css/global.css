@@ -429,24 +429,42 @@ footer {
   position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
 }
+
 .cart-badge {
   position: absolute;
   top: -6px;
   right: -8px;
   background: #000000;
   color: #ffffff;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 800;
   min-width: 18px;
   height: 18px;
   border-radius: 50%;
-  display: flex;
+  display: none; /* Mặc định ẩn, chỉ hiện khi có số lượng > 0 */
   align-items: center;
   justify-content: center;
   padding: 0 4px;
+  line-height: 1;
+  pointer-events: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
+
+/* Ẩn triệt để khi rỗng hoặc data-count = 0 */
 .cart-badge:empty,
 .cart-badge[data-count="0"] {
-  display: none;
+  display: none !important;
+}
+
+/* Animation nảy nhẹ khi thêm sản phẩm */
+@keyframes badgePopAnim {
+  0% { transform: scale(0.6); }
+  50% { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+
+.cart-badge.badge-pop {
+  animation: badgePopAnim 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
