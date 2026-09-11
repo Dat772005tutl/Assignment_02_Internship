@@ -26,6 +26,11 @@ function addProductToCart(item) {
     cart.unshift(item);
   }
   saveCartData(cart);
+
+  // Kích hoạt cập nhật ngay Badge trên Navbar
+  if (typeof updateHeaderCartBadge === "function") {
+    updateHeaderCartBadge();
+  }
 }
 
 function renderCartView() {

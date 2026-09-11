@@ -19,7 +19,10 @@
   <header class="container">
     <nav class="navbar">
       <div class="nav-left-mobile">
-        <div class="mobile-menu-btn" onclick="alert('Menu SHOP.CO:\n- Shop\n- On Sale\n- New Arrivals\n- Brands')">&#9776;</div>
+        <!-- Nút mở Side Menu Drawer trên Mobile (ĐÃ XÓA ALERT) -->
+        <button type="button" class="mobile-menu-btn" id="btnIndexOpenDrawer" style="background:none; border:none; padding:0;">
+          &#9776;
+        </button>
         <a href="index.html" class="nav-logo">SHOP.CO</a>
       </div>
 
@@ -43,15 +46,40 @@
             <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
           </svg>
         </a>
-        <a href="pages/cart.html" title="Cart">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+        <a href="pages/cart.html" class="cart-icon-link" title="Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+          </svg>
+          <span class="cart-badge" id="navbarCartBadge">0</span>
         </a>
         <a href="#" title="Account">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+          </svg>
         </a>
       </div>
     </nav>
   </header>
+
+  <!-- Side Menu Drawer Cho Mobile trên Trang chủ -->
+  <div class="mobile-drawer-overlay" id="indexDrawerOverlay"></div>
+  <aside class="mobile-side-drawer" id="indexMobileDrawer">
+    <div class="drawer-header">
+      <span class="drawer-logo">SHOP.CO</span>
+      <button type="button" class="drawer-close-btn" id="btnIndexCloseDrawer">&times;</button>
+    </div>
+    <ul class="drawer-nav-list">
+      <li><a href="pages/category.html">Shop <span>&rarr;</span></a></li>
+      <li><a href="pages/category.html?filter=on-sale">On Sale <span>&rarr;</span></a></li>
+      <li><a href="pages/category.html?filter=new-arrivals">New Arrivals <span>&rarr;</span></a></li>
+      <li><a href="pages/category.html">Brands <span>&rarr;</span></a></li>
+    </ul>
+    <hr class="drawer-divider" />
+    <ul class="drawer-nav-list">
+      <li><a href="pages/cart.html">View Cart <span id="indexDrawerCartCount">(0)</span></a></li>
+      <li><a href="#">My Account</a></li>
+    </ul>
+  </aside>
 
   <!-- HERO SECTION -->
   <section class="hero">
@@ -106,30 +134,38 @@
     </div>
   </section>
 
-<!-- NEW ARRIVALS -->
+  <!-- NEW ARRIVALS -->
   <section class="container">
     <h2 class="section-title">NEW ARRIVALS</h2>
     <div class="product-grid">
       <a href="pages/product.html?id=tape-details-tee" class="product-card">
-        <div class="product-img"><img src="images/tape-details-1.jpg" alt="T-shirt with Tape Details" onerror="this.src='https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300'" /></div>
+        <div class="product-img">
+          <img src="images/tape-details-1.jpg" alt="T-shirt with Tape Details" onerror="this.src='https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300'" />
+        </div>
         <p class="product-name">T-shirt with Tape Details</p>
         <div class="product-rating">&#9733;&#9733;&#9733;&#9733;&#9733; <span class="rating-num">4.5/5</span></div>
         <div class="product-price">$120</div>
       </a>
       <a href="pages/product.html?id=skinny-fit-jeans" class="product-card">
-        <div class="product-img"><img src="images/skinny-jeans-1.jpg" alt="Skinny Fit Jeans" onerror="this.src='https://images.unsplash.com/photo-1542272604-787c3835535d?w=300'" /></div>
+        <div class="product-img">
+          <img src="images/skinny-jeans-1.jpg" alt="Skinny Fit Jeans" onerror="this.src='https://images.unsplash.com/photo-1542272604-787c3835535d?w=300'" />
+        </div>
         <p class="product-name">Skinny Fit Jeans</p>
         <div class="product-rating">&#9733;&#9733;&#9733;&#9733;&#9734; <span class="rating-num">3.5/5</span></div>
         <div class="product-price">$240 <span class="price-old">$260</span> <span class="discount-badge">-20%</span></div>
       </a>
       <a href="pages/product.html?id=checkered-shirt" class="product-card">
-        <div class="product-img"><img src="images/checkered-shirt-1.jpg" alt="Checkered Shirt" onerror="this.src='https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=300'" /></div>
+        <div class="product-img">
+          <img src="images/checkered-shirt-1.jpg" alt="Checkered Shirt" onerror="this.src='https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=300'" />
+        </div>
         <p class="product-name">Checkered Shirt</p>
         <div class="product-rating">&#9733;&#9733;&#9733;&#9733;&#9733; <span class="rating-num">4.5/5</span></div>
         <div class="product-price">$180</div>
       </a>
       <a href="pages/product.html?id=sleeve-striped-tee" class="product-card">
-        <div class="product-img"><img src="images/sleeve-striped-1.jpg" alt="Sleeve Striped T-shirt" onerror="this.src='https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=300'" /></div>
+        <div class="product-img">
+          <img src="images/sleeve-striped-1.jpg" alt="Sleeve Striped T-shirt" onerror="this.src='https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=300'" />
+        </div>
         <p class="product-name">Sleeve Striped T-shirt</p>
         <div class="product-rating">&#9733;&#9733;&#9733;&#9733;&#9733; <span class="rating-num">4.5/5</span></div>
         <div class="product-price">$130 <span class="price-old">$160</span> <span class="discount-badge">-30%</span></div>
@@ -145,25 +181,33 @@
     <h2 class="section-title">TOP SELLING</h2>
     <div class="product-grid">
       <a href="pages/product.html?id=vertical-striped-shirt" class="product-card">
-        <div class="product-img"><img src="images/vertical-striped-1.jpg" alt="Vertical Striped Shirt" onerror="this.src='https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=300'" /></div>
+        <div class="product-img">
+          <img src="images/vertical-striped-1.jpg" alt="Vertical Striped Shirt" onerror="this.src='https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=300'" />
+        </div>
         <p class="product-name">Vertical Striped Shirt</p>
         <div class="product-rating">&#9733;&#9733;&#9733;&#9733;&#9733; <span class="rating-num">5.0/5</span></div>
         <div class="product-price">$212 <span class="price-old">$232</span> <span class="discount-badge">-20%</span></div>
       </a>
       <a href="pages/product.html?id=courage-graphic-tee" class="product-card">
-        <div class="product-img"><img src="images/courage-graphic-1.jpg" alt="Courage Graphic T-shirt" onerror="this.src='https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=300'" /></div>
+        <div class="product-img">
+          <img src="images/courage-graphic-1.jpg" alt="Courage Graphic T-shirt" onerror="this.src='https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=300'" />
+        </div>
         <p class="product-name">Courage Graphic T-shirt</p>
         <div class="product-rating">&#9733;&#9733;&#9733;&#9733;&#9734; <span class="rating-num">4.0/5</span></div>
         <div class="product-price">$145</div>
       </a>
       <a href="pages/product.html?id=bermuda-shorts" class="product-card">
-        <div class="product-img"><img src="images/bermuda-shorts-1.jpg" alt="Loose Fit Bermuda Shorts" onerror="this.src='https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=300'" /></div>
+        <div class="product-img">
+          <img src="images/bermuda-shorts-1.jpg" alt="Loose Fit Bermuda Shorts" onerror="this.src='https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=300'" />
+        </div>
         <p class="product-name">Loose Fit Bermuda Shorts</p>
         <div class="product-rating">&#9733;&#9733;&#9733;&#9734;&#9734; <span class="rating-num">3.0/5</span></div>
         <div class="product-price">$80</div>
       </a>
       <a href="pages/product.html?id=faded-skinny-jeans" class="product-card">
-        <div class="product-img"><img src="images/faded-skinny-1.jpg" alt="Faded Skinny Jeans" onerror="this.src='https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=300'" /></div>
+        <div class="product-img">
+          <img src="images/faded-skinny-1.jpg" alt="Faded Skinny Jeans" onerror="this.src='https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=300'" />
+        </div>
         <p class="product-name">Faded Skinny Jeans</p>
         <div class="product-rating">&#9733;&#9733;&#9733;&#9733;&#9733; <span class="rating-num">4.5/5</span></div>
         <div class="product-price">$210</div>
@@ -177,24 +221,12 @@
     <div class="dress-style-box">
       <h2 class="section-title">BROWSE BY DRESS STYLE</h2>
       <div class="dress-grid">
-        <a href="pages/category.html" class="dress-card">
-          <span>Casual</span>
-          <img src="images/dress-casual.png" alt="Casual" onerror="this.src='https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400'" />
-        </a>
-        <a href="pages/category.html" class="dress-card">
-          <span>Formal</span>
-          <img src="images/dress-formal.png" alt="Formal" onerror="this.src='https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=500'" />
-        </a>
+        <a href="pages/category.html" class="dress-card"><span>Casual</span><img src="images/dress-casual.png" alt="Casual" onerror="this.src='https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400'"/></a>
+        <a href="pages/category.html" class="dress-card"><span>Formal</span><img src="images/dress-formal.png" alt="Formal" onerror="this.src='https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=500'"/></a>
       </div>
       <div class="dress-grid reverse">
-        <a href="pages/category.html" class="dress-card">
-          <span>Party</span>
-          <img src="images/dress-party.png" alt="Party" onerror="this.src='https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=500'" />
-        </a>
-        <a href="pages/category.html" class="dress-card">
-          <span>Gym</span>
-          <img src="images/dress-gym.png" alt="Gym" onerror="this.src='https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=400'" />
-        </a>
+        <a href="pages/category.html" class="dress-card"><span>Party</span><img src="images/dress-party.png" alt="Party" onerror="this.src='https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=500'"/></a>
+        <a href="pages/category.html" class="dress-card"><span>Gym</span><img src="images/dress-gym.png" alt="Gym" onerror="this.src='https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=400'"/></a>
       </div>
     </div>
   </section>
@@ -227,7 +259,7 @@
     </div>
   </section>
 
-  <!-- Floating Newsletter -->
+  <!-- Newsletter -->
   <div class="container newsletter-wrapper">
     <div class="newsletter-box">
       <h2>STAY UPTO DATE ABOUT OUR LATEST OFFERS</h2>
@@ -241,7 +273,7 @@
     </div>
   </div>
 
-  <!-- Footer 5 cột chuẩn -->
+  <!-- Footer -->
   <footer>
     <div class="container footer-top">
       <div class="footer-about">
@@ -249,8 +281,6 @@
         <p>We have clothes that suits your style and which you're proud to wear. From women to men.</p>
         <div class="social-icons">
           <div class="social-circle"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></div>
-          <div class="social-circle"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div>
-          <div class="social-circle"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
           <div class="social-circle"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div>
           <div class="social-circle"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
           <div class="social-circle"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></div>
@@ -285,6 +315,36 @@
     </div>
   </footer>
 
-  <script src="js/global.js"></script>
+  <script src="js/cart.js"></script>
+  <script>
+    // Xử lý Drawer cho index.html
+    document.addEventListener("DOMContentLoaded", () => {
+      const btnOpen = document.getElementById("btnIndexOpenDrawer");
+      const btnClose = document.getElementById("btnIndexCloseDrawer");
+      const overlay = document.getElementById("indexDrawerOverlay");
+      const drawer = document.getElementById("indexMobileDrawer");
+
+      function openDrawer() {
+        drawer.classList.add("active");
+        overlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeDrawer() {
+        drawer.classList.remove("active");
+        overlay.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      if (btnOpen) btnOpen.addEventListener("click", openDrawer);
+      if (btnClose) btnClose.addEventListener("click", closeDrawer);
+      if (overlay) overlay.addEventListener("click", closeDrawer);
+
+      // Cập nhật số lượng Badge trên index
+      if (typeof updateHeaderCartBadge === "function") {
+        updateHeaderCartBadge();
+      }
+    });
+  </script>
 </body>
 </html>

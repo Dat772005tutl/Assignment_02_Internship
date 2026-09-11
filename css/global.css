@@ -323,3 +323,130 @@ footer {
   .footer-bottom { flex-direction: column; gap: 16px; text-align: center; padding-top: 20px; }
   .payment-badges { justify-content: center; flex-wrap: wrap; }
 }
+/* =======================================================
+   MOBILE SIDE MENU DRAWER (CHUẨN UI MOBILE)
+   ======================================================= */
+/* Lớp phủ đen mờ phía sau */
+.mobile-drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  z-index: 999998;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+.mobile-drawer-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Khung Side Menu trượt từ trái sang */
+.mobile-side-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 290px;
+  max-width: 85vw;
+  height: 100vh;
+  background: #ffffff;
+  z-index: 999999;
+  box-shadow: 4px 0 25px rgba(0, 0, 0, 0.15);
+  transform: translateX(-100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 20px;
+}
+.mobile-side-drawer.active {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+}
+.drawer-logo {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+.drawer-close-btn {
+  background: #F0F0F0;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Danh sách menu trượt */
+.drawer-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.drawer-nav-list li a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000000;
+  padding: 10px 12px;
+  border-radius: 10px;
+  transition: background 0.15s;
+}
+.drawer-nav-list li a:hover,
+.drawer-nav-list li a:active {
+  background: #F0F0F0;
+}
+
+.drawer-divider {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  margin: 20px 0;
+}
+
+/* =======================================================
+   CART ICON BADGE (SỐ LƯỢNG SẢN PHẨM TRÊN NAVBAR)
+   ======================================================= */
+.cart-icon-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background: #000000;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+.cart-badge:empty,
+.cart-badge[data-count="0"] {
+  display: none;
+}
