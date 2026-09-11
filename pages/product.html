@@ -83,7 +83,7 @@
         <h3 id="allReviewsCountHeading">All Reviews <span>(451)</span></h3>
         
         <div class="reviews-actions">
-          <button class="btn-filter-icon" id="btnFilterStarDropdown" title="Filter reviews">
+          <button type="button" class="btn-filter-icon" id="btnFilterStarDropdown" title="Filter reviews">
             <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/></svg>
           </button>
 
@@ -101,25 +101,25 @@
             <option value="lowest">Lowest Rating</option>
           </select>
 
-          <button class="btn-write-review" id="btnOpenReviewModal">Write a Review</button>
+          <button type="button" class="btn-write-review" id="btnOpenReviewModal">Write a Review</button>
         </div>
       </div>
 
       <div class="product-reviews-grid" id="reviewsGridContainer"></div>
 
       <div class="load-more-wrap">
-        <button class="btn-outline" id="btnLoadMoreReviews">Load More Reviews</button>
+        <button type="button" class="btn-outline" id="btnLoadMoreReviews">Load More Reviews</button>
       </div>
     </section>
 
-    <!-- YOU MIGHT ALSO LIKE: Đồng bộ 100% ID và đường dẫn ảnh cục bộ -->
+    <!-- YOU MIGHT ALSO LIKE: Đồng bộ chuẩn tên file ảnh theo semantic naming -->
     <section class="related-products-section">
       <h2 class="section-title">YOU MIGHT ALSO LIKE</h2>
       <div class="product-grid">
         <!-- 1. Polo with Contrast Trims -->
         <a href="product.html?id=polo-contrast-trims" class="product-card">
           <div class="product-img">
-            <img src="../images/product-8-main.jpg" 
+            <img src="../images/polo-contrast-1.jpg" 
                  alt="Polo with Contrast Trims" 
                  onerror="this.src='https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=300'" />
           </div>
@@ -131,7 +131,7 @@
         <!-- 2. Gradient Graphic T-shirt -->
         <a href="product.html?id=gradient-graphic-tee" class="product-card">
           <div class="product-img">
-            <img src="../images/product-11-main.jpg" 
+            <img src="../images/gradient-graphic-1.jpg" 
                  alt="Gradient Graphic T-shirt" 
                  onerror="this.src='https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=300'" />
           </div>
@@ -143,7 +143,7 @@
         <!-- 3. Polo with Tipping Details -->
         <a href="product.html?id=polo-tipping-details" class="product-card">
           <div class="product-img">
-            <img src="../images/product-12-main.jpg" 
+            <img src="../images/polo-tipping-1.jpg" 
                  alt="Polo with Tipping Details" 
                  onerror="this.src='https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=300'" />
           </div>
@@ -155,7 +155,7 @@
         <!-- 4. Black Striped T-shirt -->
         <a href="product.html?id=black-striped-tee" class="product-card">
           <div class="product-img">
-            <img src="../images/product-7-main.jpg" 
+            <img src="../images/black-striped-1.jpg" 
                  alt="Black Striped T-shirt" 
                  onerror="this.src='https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=300'" />
           </div>
@@ -172,7 +172,7 @@
     <div class="modal-box">
       <div class="modal-header">
         <h3>Write a Review</h3>
-        <button class="modal-close" id="btnCloseReviewModal">&times;</button>
+        <button type="button" class="modal-close" id="btnCloseReviewModal">&times;</button>
       </div>
       <form id="formWriteReview">
         <div class="form-group">
@@ -204,7 +204,9 @@
   <!-- Component Footer dùng chung -->
   <app-footer></app-footer>
 
+  <!-- Scripts đồng bộ toàn trang -->
   <script src="../js/cart.js"></script>
   <script src="../js/product.js"></script>
+  <script src="../js/global.js"></script>
 </body>
 </html>

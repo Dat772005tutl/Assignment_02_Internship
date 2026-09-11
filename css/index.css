@@ -7,10 +7,14 @@
 .hero-content {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
-  align-items: center;
-  min-height: 580px;
+  align-items: end; /* Neo toàn bộ khối ảnh chạm đáy */
+  min-height: 600px;
 }
-.hero-left { padding: 60px 0; z-index: 2; }
+.hero-left { 
+  padding: 60px 0; 
+  z-index: 2; 
+  align-self: center; /* Khối chữ vẫn căn giữa cân đối */
+}
 .hero-title {
   font-size: 58px;
   font-weight: 900;
@@ -39,23 +43,48 @@
 .stat-item p { color: var(--text-muted); font-size: 14px; margin-top: 6px; }
 .stat-divider { width: 1px; height: 52px; background: rgba(0, 0, 0, 0.1); }
 
+/* Khung ảnh & Ngôi sao chuẩn Figma */
 .hero-right {
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  align-items: flex-end;
   align-self: end;
   height: 100%;
 }
 .hero-main-img {
   width: 100%;
-  max-height: 600px;
+  max-width: 580px;
+  max-height: 660px;
+  height: auto;
   object-fit: contain;
   object-position: bottom;
+  display: block;
+  vertical-align: bottom;
+  margin-bottom: -2px; /* Khớp sát viền đen bên dưới không bị hở trắng */
   z-index: 1;
 }
-.star-icon { position: absolute; z-index: 2; pointer-events: none; }
-.star-big { top: 50px; right: 10px; width: 90px; height: 90px; }
-.star-small { top: 42%; left: 10px; width: 48px; height: 48px; }
+.star-icon { 
+  position: absolute; 
+  z-index: 2; 
+  pointer-events: none; 
+  color: #000000;
+}
+/* Ngôi sao lớn bên vai phải bạn nam */
+.star-big { 
+  top: 8%; 
+  right: 15px; 
+  width: 86px; 
+  height: 86px; 
+}
+/* Ngôi sao nhỏ cạnh bạn nữ */
+.star-small { 
+  top: 44%; 
+  left: 0; 
+  transform: translateX(-50%);
+  width: 46px; 
+  height: 46px; 
+}
 
 /* --- Brands Banner --- */
 .brands-banner { background: var(--primary); color: #fff; padding: 42px 0; }
@@ -214,12 +243,17 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    margin-top: 10px;
+    margin-top: 16px;
     height: auto;
   }
-  .hero-main-img { width: 100%; max-height: 440px; object-position: bottom; }
-  .star-big { width: 66px; height: 66px; top: 20px; right: 16px; }
-  .star-small { width: 40px; height: 40px; top: 38%; left: 16px; }
+  .hero-main-img { 
+    width: 100%; 
+    max-height: 420px; 
+    object-position: bottom; 
+    margin-bottom: -2px;
+  }
+  .star-big { width: 64px; height: 64px; top: 16px; right: 16px; }
+  .star-small { width: 40px; height: 40px; top: 38%; left: 16px; transform: none; }
 
   .brands-banner { padding: 32px 16px; }
   .brands-wrap { justify-content: center; gap: 20px 28px; }

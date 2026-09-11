@@ -10,6 +10,7 @@
 </head>
 <body>
 
+  <!-- Header Web Component -->
   <app-header></app-header>
 
   <main class="container">
@@ -24,9 +25,10 @@
             <span class="filter-desktop-icon">
               <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/></svg>
             </span>
-            <button class="filter-mobile-close" id="btnCloseMobileFilter">&times;</button>
+            <button type="button" class="filter-mobile-close" id="btnCloseMobileFilter">&times;</button>
           </div>
 
+          <!-- Danh mục -->
           <div class="filter-group">
             <div class="category-link-item active" onclick="selectCategory(this, 'All')">All Categories <span>&gt;</span></div>
             <div class="category-link-item" onclick="selectCategory(this, 'T-shirts')">T-shirts <span>&gt;</span></div>
@@ -36,6 +38,7 @@
             <div class="category-link-item" onclick="selectCategory(this, 'Jeans')">Jeans <span>&gt;</span></div>
           </div>
 
+          <!-- Khoảng giá -->
           <div class="filter-group">
             <h4>Price <span>&#9652;</span></h4>
             <div class="price-slider-wrap">
@@ -47,6 +50,7 @@
             </div>
           </div>
 
+          <!-- Màu sắc -->
           <div class="filter-group">
             <h4>Colors <span>&#9652;</span></h4>
             <div class="color-options">
@@ -63,6 +67,7 @@
             </div>
           </div>
 
+          <!-- Kích cỡ -->
           <div class="filter-group">
             <h4>Size <span>&#9652;</span></h4>
             <div class="size-chips">
@@ -78,15 +83,16 @@
             </div>
           </div>
 
+          <!-- Dress Style (Đã xóa toàn bộ alert) -->
           <div class="filter-group">
             <h4>Dress Style <span>&#9652;</span></h4>
-            <div class="category-link-item" onclick="alert('Style: Casual')">Casual <span>&gt;</span></div>
-            <div class="category-link-item" onclick="alert('Style: Formal')">Formal <span>&gt;</span></div>
-            <div class="category-link-item" onclick="alert('Style: Party')">Party <span>&gt;</span></div>
-            <div class="category-link-item" onclick="alert('Style: Gym')">Gym <span>&gt;</span></div>
+            <div class="category-link-item active" onclick="selectStyle(this, 'Casual')">Casual <span>&gt;</span></div>
+            <div class="category-link-item" onclick="selectStyle(this, 'Formal')">Formal <span>&gt;</span></div>
+            <div class="category-link-item" onclick="selectStyle(this, 'Party')">Party <span>&gt;</span></div>
+            <div class="category-link-item" onclick="selectStyle(this, 'Gym')">Gym <span>&gt;</span></div>
           </div>
 
-          <button class="btn-primary" onclick="closeAndApplyFilter()">Apply Filter</button>
+          <button type="button" class="btn-primary" onclick="closeAndApplyFilter()">Apply Filter</button>
         </div>
       </aside>
 
@@ -105,7 +111,7 @@
                 <option value="rating">Rating: Highest</option>
               </select>
             </div>
-            <button class="btn-filter-mobile" id="btnOpenMobileFilter" title="Filter">
+            <button type="button" class="btn-filter-mobile" id="btnOpenMobileFilter" title="Filter">
               <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/></svg>
             </button>
           </div>
@@ -139,8 +145,7 @@
 
   <app-footer></app-footer>
 
-<script>
-    // 1. Thêm cờ isNew: true cho các sản phẩm New Arrivals
+  <script>
     const PRODUCTS_DATA = [
       { id: "tape-details-tee", name: "T-shirt with Tape Details", price: 120, oldPrice: null, rating: 4.5, category: "T-shirts", isNew: true, color: "black", size: ["Small", "Medium", "Large"], image: "../images/tape-details-1.jpg" },
       { id: "skinny-fit-jeans", name: "Skinny Fit Jeans", price: 240, oldPrice: 260, rating: 3.5, category: "Jeans", isNew: true, color: "blue", size: ["Medium", "Large", "X-Large"], image: "../images/skinny-jeans-1.jpg" },
@@ -163,11 +168,10 @@
     let selectedColors = [];
     let selectedSizes = [];
 
-    // 2. Đọc tham số URL (?filter=on-sale hoặc ?filter=new-arrivals)
+    // Đọc URL query (?filter=on-sale hoặc ?filter=new-arrivals)
     const urlParams = new URLSearchParams(window.location.search);
-    const activeUrlFilter = urlParams.get("filter"); // "on-sale" | "new-arrivals" | null
+    const activeUrlFilter = urlParams.get("filter");
 
-    // Tự động đổi Tiêu đề trang & Breadcrumb
     const pageTitleEl = document.querySelector(".category-page-title");
     const breadcrumbEl = document.querySelector(".breadcrumb span");
 
@@ -181,7 +185,7 @@
       document.title = "SHOP.CO | New Arrivals";
     }
 
-    // 3. Mở / Đóng bộ lọc Mobile
+    // Đóng/Mở Bottom Sheet Lọc trên Mobile
     const filterSidebar = document.getElementById("filterSidebar");
     const btnOpenMobile = document.getElementById("btnOpenMobileFilter");
     const btnCloseMobile = document.getElementById("btnCloseMobileFilter");
@@ -195,7 +199,7 @@
 
     function closeFilterDrawer() {
       filterSidebar.classList.remove("open");
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "";
     }
     if (btnCloseMobile) btnCloseMobile.addEventListener("click", closeFilterDrawer);
 
@@ -217,9 +221,17 @@
     });
 
     function selectCategory(el, cat) {
-      document.querySelectorAll(".category-link-item").forEach(x => x.classList.remove("active"));
+      document.querySelectorAll(".filter-group:first-of-type .category-link-item").forEach(x => x.classList.remove("active"));
       el.classList.add("active");
       currentCategory = cat;
+      applyFilters();
+    }
+
+    function selectStyle(el, styleName) {
+      document.querySelectorAll(".filter-group:last-of-type .category-link-item").forEach(x => x.classList.remove("active"));
+      el.classList.add("active");
+      if (pageTitleEl && !activeUrlFilter) pageTitleEl.textContent = styleName;
+      if (breadcrumbEl && !activeUrlFilter) breadcrumbEl.textContent = styleName;
       applyFilters();
     }
 
@@ -255,24 +267,20 @@
       return "&#9733;".repeat(count) + "&#9734;".repeat(5 - count);
     }
 
-    // 4. Hàm lọc sản phẩm có hỗ trợ On Sale và New Arrivals
     function applyFilters() {
       const maxPrice = parseFloat(priceRangeInput.value) || 300;
       const sortBy = document.getElementById("sortSelect")?.value || "popular";
 
       let filtered = PRODUCTS_DATA.filter(item => {
-        // Lọc theo chế độ On Sale
         if (activeUrlFilter === "on-sale") {
           const isOnSale = item.oldPrice !== null && item.oldPrice > item.price;
           if (!isOnSale) return false;
         }
 
-        // Lọc theo chế độ New Arrivals
         if (activeUrlFilter === "new-arrivals") {
           if (!item.isNew) return false;
         }
 
-        // Các bộ lọc bổ sung: Category, Price, Color, Size
         const matchCat = (currentCategory === "All") || (item.category.toLowerCase() === currentCategory.toLowerCase());
         const matchPrice = item.price <= maxPrice;
         const matchColor = (selectedColors.length === 0) || selectedColors.includes(item.color);
@@ -280,7 +288,6 @@
         return matchCat && matchPrice && matchColor && matchSize;
       });
 
-      // Sắp xếp
       if (sortBy === "low-high") filtered.sort((a, b) => a.price - b.price);
       else if (sortBy === "high-low") filtered.sort((a, b) => b.price - a.price);
       else if (sortBy === "rating") filtered.sort((a, b) => b.rating - a.rating);
@@ -288,7 +295,7 @@
       const grid = document.getElementById("productGrid");
       const showingCount = document.getElementById("showingCount");
       if (showingCount) {
-        showingCount.textContent = `Showing 1-${filtered.length} of ${filtered.length} Products`;
+        showingCount.textContent = `Showing 1-${filtered.length} of ${PRODUCTS_DATA.length} Products`;
       }
 
       if (filtered.length === 0) {
@@ -323,5 +330,8 @@
       applyFilters();
     });
   </script>
+
+  <!-- Nạp file global.js để điều khiển Side Menu Drawer & Cart Badge chung -->
+  <script src="../js/global.js"></script>
 </body>
 </html>
